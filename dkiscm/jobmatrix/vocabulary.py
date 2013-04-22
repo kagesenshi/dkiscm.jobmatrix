@@ -6,6 +6,7 @@ from zope.component import getUtility
 from z3c.formwidget.query.interfaces import IQuerySource
 from Products.CMFCore.utils import getToolByName
 from dkiscm.jobmatrix import MessageFactory as _
+from dkiscm.jobmatrix.content.industrycluster import IIndustryCluster
 
 class BaseVocabularyFactory(grok.GlobalUtility):
     grok.baseclass()
@@ -21,10 +22,22 @@ class BaseVocabularyFactory(grok.GlobalUtility):
 class IndustryCluster(BaseVocabularyFactory):
     grok.name('dkiscm.jobmatrix.industrycluster')
 
-    terms = [{
-        'title':_(u'Creative Multimedia'),
-        'value': 'creative-multimedia'
-    }]
+    def __call__(self, context):
+        results = []
+        for brain in context.portal_catalog(
+            object_provides=IIndustryCluster.__identifier__
+            ):
+            results.append({
+                'value': brain.getId,
+                'title': brain.Title
+            })
+
+        terms = []
+        for item in results:
+            terms.append(SimpleTerm(**item))
+        return SimpleVocabulary(terms)
+
+
 
 
 class JobGroupingVocabularyFactory(BaseVocabularyFactory):

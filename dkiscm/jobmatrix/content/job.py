@@ -250,12 +250,6 @@ class IJob(form.Schema, IImageScaleTraversable):
         required=True
     )
 
-    industry_cluster = schema.Choice(
-        title=_(u'Industry Cluster'),
-        vocabulary='dkiscm.jobmatrix.industrycluster',
-        required=True
-    )
-
     job_grouping = schema.Choice(
         title=_(u'Job Grouping'),
         vocabulary='dkiscm.jobmatrix.jobgrouping',

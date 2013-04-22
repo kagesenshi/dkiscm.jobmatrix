@@ -15,7 +15,7 @@
 
     <include package=".behavior"/>
     <include package=".portlet"/>
-
+    <adapter factory=".indexer.job_industry_cluster" name="industry_cluster"/>
     <!-- -*- extra stuff goes here -*- -->
 
 </configure>
