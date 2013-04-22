@@ -6,60 +6,51 @@
       metal:use-macro="context/main_template/macros/master"
       i18n:domain="dkiscm.jobmatrix">
       <head>
-          <metal:slot fill-slot="style_slot">
-              <style>
-                  th {
-                    background:#004953;
-                    color:#fff;
-                    }
-
-                    th h4 { color :#fff; }
-
-                    td, th { padding: 10px }
-                    .required-row {
-                        background:#98C3CA;
-                    }
-              </style>
-          </metal:slot>
       </head>
-<body>
-        <metal:description fill-slot="content-description"></metal:description>
+      <body>
+
+          <metal:title fill-slot="content-title">
+              <h1>
+                  <tal:block replace="context/job_code"/> 
+                  <tal:block replace="context/pretty_title_or_id"/>
+              </h1>
+          </metal:title>
+    <metal:description fill-slot="content-description"></metal:description>
 
     <metal:main fill-slot="content-core">
 
 
     <metal:content-core define-macro="content-core">
+        <h4 tal:content="context/industry_cluster"></h4>
+        <table class="dkiscm-jobview-jobsummary">
 
-      <table>
-          <tr>
-              <h3 tal:content="context/job_code"></h3>
-              <h4 tal:content="context/industry_cluster"></h4>
-              <th>
-                  <div><h4>Job Grouping</h4></div>
-                  <div tal:content="context/job_grouping"></div>
-                  <div><h4>Education</h4></div>
-                  <div tal:content="context/education"></div>
-              </th>
-              <td>
-                  <h4>Job Description</h4>
-                  <p tal:content="context/description"></p>
+            <tr>
+                <td class="leftcol">
+                    <div><h4>Job Grouping</h4></div>
+                    <div tal:content="context/job_grouping"></div>
+                    <div><h4>Education</h4></div>
+                    <div tal:content="context/education"></div>
+                </td>
+                <td>
+                    <h4>Job Description</h4>
+                    <p tal:content="context/description"></p>
 
-                  <h4>Simiar Job Titles</h4>
-                  <p>tbd</p>
-              </td>
-          </tr>
-      </table>
+                    <h4>Simiar Job Titles</h4>
+                    <p>tbd</p>
+                </td>
+            </tr>
+        </table>
 
-      <table>
+      <table class="dkiscm-skilltable">
           <thead>
               <tr>
-                  <td>No</td>
-                  <td>Description</td>
-                  <td>Entry</td>
-                  <td>Intermediate</td>
-                  <td>Senior</td>
-                  <td>Advanced</td>
-                  <td>Master</td>
+                  <th>No</th>
+                  <th>Description</th>
+                  <th>Entry</th>
+                  <th>Intermediate</th>
+                  <th>Senior</th>
+                  <th>Advanced</th>
+                  <th>Master</th>
               </tr>
           </thead>
           <tbody>
@@ -159,16 +150,16 @@
       </table>
 
       <h2>Technical Skills Competency</h2>
-      <table>
+      <table class="dkiscm-skilltable">
           <thead>
               <tr>
-                  <td>No</td>
-                  <td>Skill</td>
-                  <td>Entry</td>
-                  <td>Intermediate</td>
-                  <td>Senior</td>
-                  <td>Advanced</td>
-                  <td>Master</td>
+                  <th>No</th>
+                  <th>Skill</th>
+                  <th>Entry</th>
+                  <th>Intermediate</th>
+                  <th>Senior</th>
+                  <th>Advanced</th>
+                  <th>Master</th>
               </tr>
           </thead>
           <tbody>
@@ -198,7 +189,7 @@
           </tbody>
       </table>
       <h2>Soft Skills Competency</h2>
-      <table>
+      <table class="dkiscm-skilltable">
           <thead>
               <tr>
                   <td>No</td>

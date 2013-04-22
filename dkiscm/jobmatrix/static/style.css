@@ -14,3 +14,26 @@
 #formfield-form-widgets-industry_certification .object-widget {
     clear:both;
 }
+
+.dkiscm-jobview-jobsummary td.leftcol {
+    background:#004953;
+    color:#fff;
+    width:200px;
+}
+
+th h4 { color :#fff; }
+
+.dkiscm-jobview-jobsummary td, 
+.dkiscm-jobview-jobsummary th,
+.dkiscm-skilltable td,
+.dkiscm-skilltable th { 
+    padding: 10px 
+}
+
+.dkiscm-skilltable {
+    width:100%;
+}
+
+.required-row {
+   background:#98C3CA;
+}
