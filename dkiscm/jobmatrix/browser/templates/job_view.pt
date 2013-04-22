@@ -26,16 +26,16 @@
             <tr>
                 <td class="leftcol">
                     <div><h4>Job Grouping</h4></div>
-                    <div tal:content="context/job_grouping"></div>
+                    <div tal:content="structure view/w/job_grouping/render"></div>
                     <div><h4>Education</h4></div>
-                    <div tal:content="context/education"></div>
+                    <div tal:content="structure view/w/education/render"></div>
                 </td>
                 <td>
                     <h4>Job Description</h4>
                     <p tal:content="context/description"></p>
 
                     <h4>Simiar Job Titles</h4>
-                    <p>tbd</p>
+                    <div tal:content="structure view/w/similar_jobs/render"></div>
                 </td>
             </tr>
         </table>
