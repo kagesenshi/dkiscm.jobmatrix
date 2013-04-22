@@ -7,6 +7,9 @@ grok.templatedir('templates')
 class Index(dexterity.DisplayForm):
     grok.context(IIndustryCluster)
     grok.require('zope2.View')
-    grok.template('industrycluster_view')
+#    grok.template('industrycluster_view')
     grok.name('view')
 
+    def render(self):
+        self.request.response.redirect(self.context.absolute_url() +
+                '/folder_tabular_view')
