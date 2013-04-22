@@ -155,7 +155,7 @@ class ISkillGrid(form.Schema):
 
     skill = schema.Text(
         title=_(u'Skill'),
-        required=True,
+        required=False,
         default=u'',
     )
 
@@ -199,7 +199,7 @@ class ISoftSkillGrid(form.Schema):
 
     skill = schema.Text(
         title=_(u'Skill'),
-        required=True,
+        required=False,
         default=u'',
     )
 
