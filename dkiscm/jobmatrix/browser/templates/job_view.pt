@@ -191,13 +191,13 @@
       <table class="dkiscm-skilltable">
           <thead>
               <tr>
-                  <td>No</td>
-                  <td>Skill</td>
-                  <td>1</td>
-                  <td>2</td>
-                  <td>3</td>
-                  <td>4</td>
-                  <td>5</td>
+                  <th>No</th>
+                  <th>Skill</th>
+                  <th>1</th>
+                  <th>2</th>
+                  <th>3</th>
+                  <th>4</th>
+                  <th>5</th>
               </tr>
           </thead>
           <tbody>
