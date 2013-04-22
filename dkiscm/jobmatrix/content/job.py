@@ -273,7 +273,9 @@ class IJob(form.Schema, IImageScaleTraversable):
     form.widget(industry_experience=DataGridFieldFactory)
     industry_experience = schema.List(
         title=u'Industry Experience',
+        description=u'Enter industry experience in year range (eg: 3-6)',
         value_type=DictRow(schema=IIndustryExperienceGrid),
+        required=False,
     )
 
     form.widget(industry_certification=DataGridFieldFactory)
@@ -286,6 +288,7 @@ class IJob(form.Schema, IImageScaleTraversable):
     form.widget(salary_range=DataGridFieldFactory)
     salary_range = schema.List(
         title=u'Salary Range',
+        description=u'Enter salary range (eg: 1000-3000)',
         value_type=DictRow(schema=ISalaryRangeGrid),
         required=False,
     )
@@ -294,10 +297,12 @@ class IJob(form.Schema, IImageScaleTraversable):
     skills_competency = schema.List(
         title=_(u'Technical Skills Competency'),
         value_type=DictRow(schema=ISkillGrid),
+        required=False
     )
 
     form.widget(softskills_competency=DataGridFieldFactory)
     softskills_competency = schema.List(
         title=_(u'Soft Skills Competency'),
         value_type=DictRow(schema=ISoftSkillGrid),
+        required=False
     )

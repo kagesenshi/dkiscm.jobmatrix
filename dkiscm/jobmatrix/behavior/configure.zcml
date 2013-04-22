@@ -6,4 +6,13 @@
 
     <!-- -*- extra stuff goes here -*- -->
 
+    <plone:behavior
+        title="NameFromJobCode"
+        description="Name from job code"
+        provides=".namefromjobcode.INameFromJobCode"
+        factory=".namefromjobcode.NameFromJobCode"
+        for="dkiscm.jobmatrix.content.job.IJob"
+        />
+
+
 </configure>
