@@ -1,0 +1,16 @@
+#formfield-form-widgets-industry_experience .object-widget-field,
+#formfield-form-widgets-industry_certification .object-widget-field {
+    float:left;
+    clear: none;
+    padding: 5px;
+    width: 15%;
+}
+
+#formfield-form-widgets-industry_experience .object-widget-field input {
+    width:50px;
+}
+
+#formfield-form-widgets-industry_experience .object-widget,
+#formfield-form-widgets-industry_certification .object-widget {
+    clear:both;
+}

@@ -33,6 +33,7 @@ setup(name='dkiscm.jobmatrix',
           'collective.dexteritytextindexer',
           'plone.app.multilingual',
           'plone.multilingualbehavior',
+          'collective.z3cform.datagridfield',
           # -*- Extra requirements: -*-
       ],
       extras_require={

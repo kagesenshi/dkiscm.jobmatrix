@@ -5,36 +5,237 @@
       lang="en"
       metal:use-macro="context/main_template/macros/master"
       i18n:domain="dkiscm.jobmatrix">
+      <head>
+          <metal:slot fill-slot="style_slot">
+              <style>
+                  th {
+                    background:#004953;
+                    color:#fff;
+                    }
+
+                    th h4 { color :#fff; }
+
+                    td, th { padding: 10px }
+                    .required-row {
+                        background:#98C3CA;
+                    }
+              </style>
+          </metal:slot>
+      </head>
 <body>
+        <metal:description fill-slot="content-description"></metal:description>
 
-<tal:comment tal:condition="nothing">
-    This is a sample view template. It will not be used for rendering the
-    content unless activated by creation of a view class with a matching name.
-    
-    Note that we're using Plone 4 macros. Replace them with Plone 3 macros
-    if needed.
-</tal:comment>
+    <metal:main fill-slot="content-core">
 
-<metal:main fill-slot="content-core">
-  <metal:content-core define-macro="content-core">
 
-    <tal:block repeat="widget view/widgets/values">
-        <div class="field" tal:condition="python:widget.__name__ not in ('IDublinCore.title', 'IDublinCore.description', 'title', 'description',)">
-            <label tal:content="widget/label" />
-            <br />
-            <div tal:content="structure widget/render" />
-        </div>
-    </tal:block>
+    <metal:content-core define-macro="content-core">
 
-    <fieldset tal:repeat="group view/groups"
-              tal:attributes="id python:''.join((group.prefix, 'groups.', group.__name__)).replace('.', '-')">
-        <legend tal:content="group/label" />
-        <div class="field" tal:repeat="widget group/widgets/values">
-            <label tal:content="widget/label" />
-            <br />
-            <div tal:content="structure widget/render" />
-        </div>
-    </fieldset>
+      <table>
+          <tr>
+              <h3 tal:content="context/job_code"></h3>
+              <h4 tal:content="context/industry_cluster"></h4>
+              <th>
+                  <div><h4>Job Grouping</h4></div>
+                  <div tal:content="context/job_grouping"></div>
+                  <div><h4>Education</h4></div>
+                  <div tal:content="context/education"></div>
+              </th>
+              <td>
+                  <h4>Job Description</h4>
+                  <p tal:content="context/description"></p>
+
+                  <h4>Simiar Job Titles</h4>
+                  <p>tbd</p>
+              </td>
+          </tr>
+      </table>
+
+      <table>
+          <thead>
+              <tr>
+                  <td>No</td>
+                  <td>Description</td>
+                  <td>Entry</td>
+                  <td>Intermediate</td>
+                  <td>Senior</td>
+                  <td>Advanced</td>
+                  <td>Master</td>
+              </tr>
+          </thead>
+          <tbody>
+              <tr class="required-row">
+                  <td>1</td>
+                  <td>Industry Experience</td>
+                  <tal:block define="vals context/industry_experience|nothing;
+                      item python:vals[0] if vals else None">
+                      <tal:c condition="item">
+                          <td>
+                              <tal:c condition="item/entry">
+                                  <span tal:replace="item/entry"/> Years
+                              </tal:c>
+                              &nbsp;
+                         </td>
+                          <td>
+                              <tal:c condition="item/intermediate">
+                                  <span tal:replace="item/intermediate"/> Years
+                              </tal:c>
+                              &nbsp;
+                          </td>
+                          <td>
+                              <tal:c condition="item/senior">
+                                  <span tal:replace="item/senior"/> Years
+                              </tal:c>
+                              &nbsp;
+                          </td>
+                          <td>
+                              <tal:c condition="item/advanced">
+                                  <span tal:replace="item/advanced"/> Years
+                              </tal:c>
+                              &nbsp;
+                          </td>
+                          <td>
+                              <tal:c condition="item/master">
+                                  <span tal:replace="item/master"/> Years
+                              </tal:c>
+                              &nbsp;
+                          </td>
+                      </tal:c>
+                      <tal:c condition="not:item">
+                          <td>&nbsp;</td>
+                          <td>&nbsp;</td>
+                          <td>&nbsp;</td>
+                          <td>&nbsp;</td>
+                           <td>&nbsp;</td>
+                      </tal:c>
+
+                  </tal:block>
+              </tr>
+              <tr class="required-row">
+                  <td>2</td>
+                  <td>Industry Certification</td>
+                  <tal:block define="vals context/industry_certification|nothing;
+                      item python:vals[0] if vals else None">
+                      <tal:c condition="item">
+                          <td><span tal:replace="item/entry"/>&nbsp;</td>
+                          <td><span tal:replace="item/intermediate"/>&nbsp;</td>
+                          <td><span tal:replace="item/senior"/>&nbsp;</td>
+                          <td><span tal:replace="item/advanced"/>&nbsp;</td>
+                          <td><span tal:replace="item/master"/>&nbsp;</td>
+                      </tal:c>
+                      <tal:c condition="not:item">
+                          <td>&nbsp;</td>
+                          <td>&nbsp;</td>
+                          <td>&nbsp;</td>
+                          <td>&nbsp;</td>
+                           <td>&nbsp;</td>
+                      </tal:c>
+
+                  </tal:block>
+
+              </tr>
+
+              <tr class="required-row">
+                  <td>3</td>
+                  <td>Salary Range</td>
+                  <tal:block define="vals context/salary_range|nothing;
+                      item python:vals[0] if vals else None">
+                      <tal:c condition="item">
+                          <td><span tal:replace="item/entry"/>&nbsp;</td>
+                          <td><span tal:replace="item/intermediate"/>&nbsp;</td>
+                          <td><span tal:replace="item/senior"/>&nbsp;</td>
+                          <td><span tal:replace="item/advanced"/>&nbsp;</td>
+                          <td><span tal:replace="item/master"/>&nbsp;</td>
+                      </tal:c>
+                      <tal:c condition="not:item">
+                          <td>&nbsp;</td>
+                          <td>&nbsp;</td>
+                          <td>&nbsp;</td>
+                          <td>&nbsp;</td>
+                           <td>&nbsp;</td>
+                      </tal:c>
+                  </tal:block>
+              </tr>
+          </tbody>
+      </table>
+
+      <h2>Technical Skills Competency</h2>
+      <table>
+          <thead>
+              <tr>
+                  <td>No</td>
+                  <td>Skill</td>
+                  <td>Entry</td>
+                  <td>Intermediate</td>
+                  <td>Senior</td>
+                  <td>Advanced</td>
+                  <td>Master</td>
+              </tr>
+          </thead>
+          <tbody>
+              <tal:block repeat="item context/skills_competency">
+                  <tr tal:attributes="class python:'required-row' if item['is_required'] else ''">
+                      <td tal:define="idx repeat/item/index">
+                          <tal:r replace="python:idx + 1"/>
+                      </td>
+                      <tal:c condition="item">
+                          <td><span tal:replace="item/skill"/>&nbsp;</td>
+                          <td><span tal:replace="item/entry"/>&nbsp;</td>
+                          <td><span tal:replace="item/intermediate"/>&nbsp;</td>
+                          <td><span tal:replace="item/senior"/>&nbsp;</td>
+                          <td><span tal:replace="item/advanced"/>&nbsp;</td>
+                          <td><span tal:replace="item/master"/>&nbsp;</td>
+                      </tal:c>
+                      <tal:c condition="not:item">
+                          <td>&nbsp;</td>
+                          <td>&nbsp;</td>
+                          <td>&nbsp;</td>
+                          <td>&nbsp;</td>
+                          <td>&nbsp;</td>
+                          <td>&nbsp;</td>
+                      </tal:c>
+                  </tr>
+              </tal:block>
+          </tbody>
+      </table>
+      <h2>Soft Skills Competency</h2>
+      <table>
+          <thead>
+              <tr>
+                  <td>No</td>
+                  <td>Skill</td>
+                  <td>1</td>
+                  <td>2</td>
+                  <td>3</td>
+                  <td>4</td>
+                  <td>5</td>
+              </tr>
+          </thead>
+          <tbody>
+              <tal:block repeat="item context/softskills_competency">
+                  <tr tal:attributes="class python:'required-row' if item['is_required'] else ''">
+                      <td tal:define="idx repeat/item/index">
+                          <tal:r replace="python:idx + 1"/>
+                      </td>
+                      <tal:c condition="item">
+                          <td><span tal:replace="item/skill"/>&nbsp;</td>
+                          <td><span tal:replace="item/col1"/>&nbsp;</td>
+                          <td><span tal:replace="item/col2"/>&nbsp;</td>
+                          <td><span tal:replace="item/col3"/>&nbsp;</td>
+                          <td><span tal:replace="item/col4"/>&nbsp;</td>
+                          <td><span tal:replace="item/col5"/>&nbsp;</td>
+                      </tal:c>
+                      <tal:c condition="not:item">
+                          <td>&nbsp;</td>
+                          <td>&nbsp;</td>
+                          <td>&nbsp;</td>
+                          <td>&nbsp;</td>
+                          <td>&nbsp;</td>
+                          <td>&nbsp;</td>
+                      </tal:c>
+                  </tr>
+              </tal:block>
+          </tbody>
+      </table>
 
 
   </metal:content-core>
