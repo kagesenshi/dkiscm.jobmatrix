@@ -263,7 +263,7 @@ class IJob(form.Schema, IImageScaleTraversable):
     )
 
     similar_jobs = RelationList(
-        title=_(u'Similar Job Titles'),
+        title=_(u'Similar Jobs'),
         required=False,
         value_type=RelationChoice(
             source=ObjPathSourceBinder(object_provides='dkiscm.jobmatrix.content.job.IJob')
