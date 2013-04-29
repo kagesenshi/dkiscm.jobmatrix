@@ -134,3 +134,25 @@ class EducationVocabularyFactory(BaseVocabularyFactory):
         'title': "Master's",
         'value': 'master'
     }]
+
+class ExperienceVocabularyFactory(BaseVocabularyFactory):
+    grok.name('dkiscm.jobmatrix.experienceyears')
+
+    terms = [{
+        'title': '0-2 Years',
+        'value': 'entry'
+    },{
+        'title': '3-6 Years',
+        'value': 'intermediate',
+    },{
+        'title': '7-10 Years',
+        'value': 'senior',
+    },{
+        'title': '11-15 Years',
+        'value': 'advanced'
+    },{
+        'title': '>15 Years',
+        'value': 'master'
+    }]
+
+

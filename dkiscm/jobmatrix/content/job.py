@@ -270,14 +270,6 @@ class IJob(form.Schema, IImageScaleTraversable):
         )
     )
 
-    form.widget(industry_experience=DataGridFieldFactory)
-    industry_experience = schema.List(
-        title=u'Industry Experience',
-        description=u'Enter industry experience in year range (eg: 3-6)',
-        value_type=DictRow(schema=IIndustryExperienceGrid),
-        required=False,
-    )
-
     form.widget(industry_certification=DataGridFieldFactory)
     industry_certification = schema.List(
         title=u'Industry Certification',

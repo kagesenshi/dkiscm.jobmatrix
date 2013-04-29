@@ -37,3 +37,21 @@ th h4 { color :#fff; }
 .required-row {
    background:#98C3CA;
 }
+
+#dkiscm-levelview-skillcompetency {
+    clear:both;
+}
+
+.skillbox {
+    border: 1px solid #CCC;
+    padding: 20px;
+    height:100px;
+    width:100px;
+    float:left;
+}
+
+.required-skill {
+    background: #eee;
+}
+
+
