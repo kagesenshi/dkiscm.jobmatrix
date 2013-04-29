@@ -51,8 +51,8 @@
             <div class="skillbox" 
                 tal:repeat="val leveldata/skills_competency"
                 tal:content="val/value"
-                tal:attributes="class python:'skillbox ' + 'required-skill' if val[
-                                    'required'] else ''">
+                tal:attributes="class python:'skillbox ' + ('required-skill' if val[
+                                    'required'] else '')">
             </div>
         </div>
         <div class="visualClear"></div>
