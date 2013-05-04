@@ -262,6 +262,11 @@ class IJob(form.Schema, IImageScaleTraversable):
         required=True
     )
 
+    education_description = schema.TextLine(
+        title=_(u'Education Description'),
+        required=False
+    )
+
     similar_jobs = RelationList(
         title=_(u'Similar Jobs'),
         required=False,
@@ -297,4 +302,9 @@ class IJob(form.Schema, IImageScaleTraversable):
         title=_(u'Soft Skills Competency'),
         value_type=DictRow(schema=ISoftSkillGrid),
         required=False
+    )
+
+    suitable_for_entry = schema.Bool(
+        title=_(u'Suitable for Entry'),
+        default=False
     )

@@ -3,6 +3,7 @@ from Products.ATContentTypes.interfaces.topic import IATTopic
 from plone.app.collection.interfaces import ICollection
 from zope.schema.interfaces import IVocabularyFactory
 from zope.component import getUtility
+from dkiscm.jobmatrix.interfaces import IProductSpecific
 
 grok.templatedir('templates')
 
@@ -11,6 +12,7 @@ class BaseJobSearch(grok.View):
     grok.name('jobsearch')
     grok.require('zope2.View')
     grok.template('jobsearch')
+    grok.layer(IProductSpecific)
 
     def industry_clusters(self):
         return getUtility(
@@ -37,6 +39,7 @@ class BaseJobSearchResults(grok.View):
     grok.name('jobsearch_results')
     grok.require('zope2.View')
     grok.template('jobsearch_results')
+    grok.layer(IProductSpecific)
 
     def results(self):
         query = self.context.buildQuery()
@@ -79,6 +82,7 @@ class CollectionJobSearchResults(BaseJobSearchResults):
 class BaseJobSearchAutocomplete(grok.View):
     grok.baseclass()
     grok.name('jobtitle_autocomplete')
+    grok.layer(IProductSpecific)
 
     def render(self):
         cluster = self.request.get('industry_cluster', '')
