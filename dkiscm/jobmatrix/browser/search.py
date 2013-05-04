@@ -75,3 +75,24 @@ class TopicJobSearchResults(BaseJobSearchResults):
 class CollectionJobSearchResults(BaseJobSearchResults):
     grok.context(ICollection)
 
+
+class BaseJobSearchAutocomplete(grok.View):
+    grok.baseclass()
+    grok.name('jobtitle_autocomplete')
+
+    def render(self):
+        cluster = self.request.get('industry_cluster', '')
+        query = self.request.get('q', '')
+        results = []
+
+        for job in self.context.portal_catalog(industry_cluster=cluster,
+                portal_type='dkiscm.jobmatrix.job'):
+            if job.Title.lower().startswith(query):
+                results.append('|'.join((job.Title,job.Title)))
+        return '\n'.join(results)
+
+class TopicJobSearchAutocomplete(BaseJobSearchAutocomplete):
+    grok.context(IATTopic)
+
+class CollectionJobSearchAutocomplete(BaseJobSearchAutocomplete):
+    grok.context(ICollection)

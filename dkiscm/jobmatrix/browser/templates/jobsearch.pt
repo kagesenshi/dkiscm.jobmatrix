@@ -4,6 +4,20 @@
     xmlns:metal="http://xml.zope.org/namespaces/metal"
     metal:use-macro="context/main_template/macros/master">
     <head>
+        <metal:block fill-slot="javascript_head_slot">
+            <script>
+                $(document).ready(function () {
+                    var url = $('#job_title').attr('data-autocompleteurl');
+                    $('#job_title').autocomplete(url, {
+                        extraParams: {
+                            'industry_cluster': function () {
+                                return $('#industry_cluster').val();
+                            }
+                        }
+                    });
+                });
+            </script>
+        </metal:block>
     </head>
     <body>
         <div metal:fill-slot="content-core">
@@ -28,7 +42,8 @@
                             <label for="job_title">Job Title</label>
                         </td>
                         <td>
-                            <input id="job_title" name="job_title"/></td>
+                            <input id="job_title" name="job_title"
+                                tal:attributes="data-autocompleteurl string:${context/absolute_url}/jobtitle_autocomplete"/></td>
 
                         </tr><tr>
                         <td>
