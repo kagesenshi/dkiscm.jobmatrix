@@ -4,6 +4,15 @@ from Products.CMFCore.utils import getToolByName
 # -*- extra stuff goes here -*- 
 
 
+@gs.upgradestep(title=u'Upgrade dkiscm.jobmatrix to 1003',
+                description=u'Upgrade dkiscm.jobmatrix to 1003',
+                source='1002', destination='1003',
+                sortkey=1, profile='dkiscm.jobmatrix:default')
+def to1003(context):
+    setup = getToolByName(context, 'portal_setup')
+    setup.runAllImportStepsFromProfile('profile-dkiscm.jobmatrix.upgrades:to1003')
+
+
 @gs.upgradestep(title=u'Upgrade dkiscm.jobmatrix to 1002',
                 description=u'Upgrade dkiscm.jobmatrix to 1002',
                 source='1001', destination='1002',
