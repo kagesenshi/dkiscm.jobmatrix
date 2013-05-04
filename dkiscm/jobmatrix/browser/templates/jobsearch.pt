@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:tal="http://xml.zope.org/namespaces/tal"
+    xmlns:metal="http://xml.zope.org/namespaces/metal"
+    metal:use-macro="context/main_template/macros/master">
+    <head>
+    </head>
+    <body>
+        <div metal:fill-slot="content-core">
+            <form tal:attributes="action string:${context/absolute_url}/jobsearch_results"
+                method="GET">
+
+                <table>
+                    <tr>
+                        <td>
+                            <label for="industry_cluster">Industry Cluster</label>
+                        </td>
+                        <td>
+                            <select id="industry_cluster" name="industry_cluster">
+                                <option tal:repeat="cluster view/industry_clusters"
+                                    tal:attributes="value cluster/value"
+                                    tal:content="cluster/title">
+                                </option>
+                            </select>
+                        </td>
+                        </tr><tr>
+                        <td>
+                            <label for="job_title">Job Title</label>
+                        </td>
+                        <td>
+                            <input id="job_title" name="job_title"/></td>
+
+                        </tr><tr>
+                        <td>
+                            <label for="experience">Experience</label>
+                        </td>
+                        <td>
+                            <select name="experience" id="experience">
+                                <option tal:repeat="experience view/experience_years"
+                                    tal:attributes="value experience/value"
+                                    tal:content="experience/title">
+                                </option>
+                            </select>
+                        </td>
+                    </tr>
+                </table>
+                <div>
+                    <input type="submit" value="Submit"/>
+                </div>
+            </form>
+        </div>
+    </body>
+</html>
