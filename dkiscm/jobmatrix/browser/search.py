@@ -47,6 +47,10 @@ class BaseJobSearchResults(grok.View):
         for brain in catalog(query):
             results.append(self._extract(brain))
 
+        # redirect if theres only 1 result 
+        if len(results) == 1:
+            self.request.response.redirect(results[0]['url'])
+
         return results
     
     def buildFilterQuery(self):
