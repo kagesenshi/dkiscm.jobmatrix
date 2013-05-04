@@ -3,6 +3,8 @@ from plone.directives import dexterity, form
 from dkiscm.jobmatrix.content.job import IJob
 from zope.schema.interfaces import IVocabularyFactory
 from zope.component import getUtility
+from Acquisition import aq_parent
+from dkiscm.jobmatrix.content.jobgroup import IJobGroup
 
 grok.templatedir('templates')
 
@@ -17,6 +19,12 @@ class Index(dexterity.DisplayForm):
             IVocabularyFactory,
             name='dkiscm.jobmatrix.experienceyears'
         )(self.context)
+
+    def job_grouping(self):
+        parent = aq_parent(self.context)
+        if not IJobGroup.providedBy(parent):
+            return ''
+        return parent.pretty_title_or_id()
 
 class LevelView(dexterity.DisplayForm):
     grok.context(IJob)
