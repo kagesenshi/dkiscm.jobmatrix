@@ -72,3 +72,18 @@ th h4 { color :#fff; }
 .dkiscm-education-table td.selected-education {
     background: #98C3CA;
 }
+
+.dkiscm-frontpage-box {
+    width:300px;
+    height:200px;
+    border:1px solid #ccc;
+    padding:10px;
+    border-radius:5px;
+    float:left;
+    margin:20px;
+}
+
+.dkiscm-frontpage-wrapper {
+    width:1090px;
+    margin:0 auto;
+}

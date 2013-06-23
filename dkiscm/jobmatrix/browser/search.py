@@ -69,7 +69,7 @@ class BaseJobSearchResults(grok.View):
     def _extract(self, brain):
         return {
             'title': brain.Title,
-            'url': brain.getURL() + '/level_view?lvl=' + self.request.get('experience', ''),
+            'url': brain.getURL(),
         }
 
 class TopicJobSearchResults(BaseJobSearchResults):
