@@ -42,7 +42,10 @@
             </div>
 
             <div class="visualClear"></div>
-            <input type="submit" value="Search"/>
+            <div style="text-align:center">
+                <input  
+                    class="largebutton" type="submit" value="Search"/>
+            </div>
         </form>
     </div>
     </div>
