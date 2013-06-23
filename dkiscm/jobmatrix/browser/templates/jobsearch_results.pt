@@ -13,13 +13,14 @@
         <div metal:fill-slot="content-description">
         </div>
         <div metal:fill-slot="content-core">
-            <table style="width:100%" class="listing">
+            <table style="width:100%" class="listing"
+                tal:define="results view/results">
                 <thead>
                     <th style="width:60%">Job Title</th>
                     <th>Industry Cluster</th>
                     <th>Experience Levels</th>
                 </thead>
-                <tr tal:repeat="item view/results">
+                <tr tal:repeat="item results">
                     <td>
                         <a tal:attributes="href item/url" 
                             tal:content="item/title"/>
@@ -27,6 +28,11 @@
                     <td tal:content="item/industry_cluster">
                     </td>
                     <td tal:content="item/exp_levels">
+                    </td>
+                </tr>
+                <tr tal:condition="not:results">
+                    <td colspan="3" style="text-align:center;">
+                        No results found. Try a different search options.
                     </td>
                 </tr>
             </table>
