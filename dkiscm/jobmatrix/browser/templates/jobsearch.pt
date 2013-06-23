@@ -16,6 +16,7 @@
                 <div class="dkiscm-frontpage-box">
                     <h2>Select your Industry Cluster</h2>
                     <select id="industry_cluster" name="industry_cluster">
+                        <option value="">--- Select Industry Cluster ---</option>
                         <option tal:repeat="cluster view/industry_clusters"
                             tal:attributes="value cluster/value"
                             tal:content="cluster/title">
@@ -27,6 +28,7 @@
                 <h2>What is your experience level?</h2>
 
                 <select name="experience" id="experience">
+                    <option value="">--- Select Experience Level ---</option>
                     <option tal:repeat="experience view/experience_years"
                         tal:attributes="value experience/value"
                         tal:content="experience/title">

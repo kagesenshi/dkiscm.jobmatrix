@@ -64,7 +64,7 @@ class Index(dexterity.DisplayForm):
         vocab = getUtility(IVocabularyFactory,
             name='dkiscm.jobmatrix.experience')(self.context)
         result = []
-        for exp in self.context.exp_levels:
+        for exp in (self.context.exp_levels or []):
             result.append(vocab.getTerm(exp))
         return result
 

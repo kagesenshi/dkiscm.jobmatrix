@@ -43,8 +43,7 @@
                             </td>
                         </tr>
                     </table>
-                    <div style="font-size:10px"
-                        tal:content="structure view/w/education_description/render"></div>
+                    <div>* <span tal:content="structure view/w/education_description/render"/></div>
                 </div>
             </div>
             <div style="float:left;padding-left:20px;">
