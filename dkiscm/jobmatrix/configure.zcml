@@ -16,6 +16,7 @@
     <include package=".behavior"/>
     <include package=".portlet"/>
     <adapter factory=".indexer.job_industry_cluster" name="industry_cluster"/>
+    <adapter factory=".indexer.job_exp_levels" name="exp_levels"/>
 
     <browser:resourceDirectory
         name="dkiscm.jobmatrix"
