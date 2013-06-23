@@ -60,8 +60,8 @@ class BaseJobSearchResults(grok.View):
         result = {}
         if self.request.get('industry_cluster', None):
             result['industry_cluster'] = self.request.get('industry_cluster')
-        if self.request.get('job_title', None):
-            result['Title'] = self.request.get('job_title')
+        if self.request.get('experience', None):
+            result['exp_levels'] = self.request.get('experience')
         if self.request.get('searchtext', None):
             result['SearchableText'] = self.request.get('searchtext')
         return result

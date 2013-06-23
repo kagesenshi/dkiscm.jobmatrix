@@ -4,4 +4,8 @@
   <indexed_attr value="industry_cluster"/>
  </index>
  <column value="industry_cluster"/>
+ <index name="exp_levels" meta_type="KeywordIndex">
+  <indexed_attr value="exp_levels"/>
+ </index>
+ <column value="exp_levels"/>
 </object>
