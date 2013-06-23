@@ -16,6 +16,11 @@
     <include package=".behavior"/>
     <include package=".portlet"/>
     <adapter factory=".indexer.job_industry_cluster" name="industry_cluster"/>
+
+    <browser:resourceDirectory
+        name="dkiscm.jobmatrix"
+        directory="static"
+        />
     <!-- -*- extra stuff goes here -*- -->
 
 </configure>

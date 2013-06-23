@@ -19,50 +19,60 @@
 
     <metal:main fill-slot="content-core">
 
+        <metal:content-core define-macro="content-core">
 
-    <metal:content-core define-macro="content-core">
-        <table class="dkiscm-jobview-jobsummary">
+            <div style="float:left">
+                <div class="dkiscm-jobgrouping">
+                    <h4>Job Grouping</h4>
+                    <table class="dkiscm-jobgrouping-table">
+                        <tr>
+                            <td tal:repeat="group view/job_grouping"
+                                tal:content="group/title"
+                                tal:attributes="class group/css_class"/>
+                        </tr>
+                    </table>
+                </div>
 
-            <tr>
-                <td class="leftcol">
-                    <div><h4>Job Grouping</h4></div>
-                    <div tal:content="view/job_grouping"></div>
-                    <div><h4>Education</h4></div>
-                    <div>
-                        <div tal:content="structure view/w/education/render"></div>
-                        <div style="font-size:10px"
-                            tal:content="structure view/w/education_description/render"></div>
-                    </div>
-                </td>
-                <td>
+                <div class="dkiscm-education">
+                    <h4>Education</h4>
+                    <table class="dkiscm-education-table">
+                        <tr>
+                            <td tal:repeat="education view/education"
+                                tal:content="education/title"
+                                tal:attributes="class education/css_class">
+                            </td>
+                        </tr>
+                    </table>
+                    <div style="font-size:10px"
+                        tal:content="structure view/w/education_description/render"></div>
+                </div>
+            </div>
+            <div style="float:left;padding-left:20px;">
+                <div class="dkiscm-jobdescription">
                     <h4>Job Description</h4>
                     <p tal:content="context/description"></p>
+                    <h4>Similar Job Titles</h4>
+                    <div tal:content="structure view/w/similar_job_titles/render"></div>
 
-                    <h4>Simiar Job Titles</h4>
-                    <div tal:content="structure view/w/similar_jobs/render"></div>
-                </td>
-            </tr>
-        </table>
-
-      <table class="dkiscm-skilltable">
+                </div>
+            </div>
+            <div class="visualClear">&nbsp;</div>
+      <table class="dkiscm-skilltable plain">
           <thead>
               <tr>
                   <th>No</th>
                   <th>Description</th>
-                  <th>Entry</th>
-                  <th>Intermediate</th>
-                  <th>Senior</th>
-                  <th>Advanced</th>
-                  <th>Master</th>
+                  <th tal:repeat="explvl view/exp_levels"
+                      tal:content="explvl/title">
+                  </th>
               </tr>
           </thead>
           <tbody>
               <tr class="required-row">
                   <td>1</td>
                   <td>Industry Experience</td>
-                  <td tal:repeat="exp view/industry_experience">
-                      <a tal:attributes="href string:${context/absolute_url}/level_view?lvl=${exp/value}"
-                          tal:content="exp/title"></a>
+                  <td tal:repeat="exp view/industry_experience"
+                          tal:content="exp/title">
                   </td>
               </tr>
               <tr class="required-row">
@@ -71,18 +81,12 @@
                   <tal:block define="vals context/industry_certification|nothing;
                       item python:vals[0] if vals else None">
                       <tal:c condition="item">
-                          <td><span tal:replace="item/entry"/>&nbsp;</td>
-                          <td><span tal:replace="item/intermediate"/>&nbsp;</td>
-                          <td><span tal:replace="item/senior"/>&nbsp;</td>
-                          <td><span tal:replace="item/advanced"/>&nbsp;</td>
-                          <td><span tal:replace="item/master"/>&nbsp;</td>
+                          <td tal:repeat="exp view/exp_levels">
+                              <span tal:replace="python:item[exp.value]"/>&nbsp;
+                          </td>
                       </tal:c>
                       <tal:c condition="not:item">
-                          <td>&nbsp;</td>
-                          <td>&nbsp;</td>
-                          <td>&nbsp;</td>
-                          <td>&nbsp;</td>
-                           <td>&nbsp;</td>
+                          <td tal:repeat="exp view/exp_levels">&nbsp;</td>
                       </tal:c>
 
                   </tal:block>
@@ -95,18 +99,12 @@
                   <tal:block define="vals context/salary_range|nothing;
                       item python:vals[0] if vals else None">
                       <tal:c condition="item">
-                          <td><span tal:replace="item/entry"/>&nbsp;</td>
-                          <td><span tal:replace="item/intermediate"/>&nbsp;</td>
-                          <td><span tal:replace="item/senior"/>&nbsp;</td>
-                          <td><span tal:replace="item/advanced"/>&nbsp;</td>
-                          <td><span tal:replace="item/master"/>&nbsp;</td>
+                          <td tal:repeat="exp view/exp_levels">
+                              <span tal:replace="python:item[exp.value]"/>&nbsp;
+                          </td>
                       </tal:c>
                       <tal:c condition="not:item">
-                          <td>&nbsp;</td>
-                          <td>&nbsp;</td>
-                          <td>&nbsp;</td>
-                          <td>&nbsp;</td>
-                           <td>&nbsp;</td>
+                          <td tal:repeat="exp view/exp_levels">&nbsp;</td>
                       </tal:c>
                   </tal:block>
               </tr>
@@ -114,16 +112,12 @@
       </table>
 
       <h2>Technical Skills Competency</h2>
-      <table class="dkiscm-skilltable">
+      <table class="dkiscm-skilltable plain">
           <thead>
               <tr>
                   <th>No</th>
                   <th>Skill</th>
-                  <th>Entry</th>
-                  <th>Intermediate</th>
-                  <th>Senior</th>
-                  <th>Advanced</th>
-                  <th>Master</th>
+                  <th tal:repeat="exp view/exp_levels" tal:content="exp/title"></th>
               </tr>
           </thead>
           <tbody>
@@ -134,35 +128,29 @@
                       </td>
                       <tal:c condition="item">
                           <td><span tal:replace="item/skill"/>&nbsp;</td>
-                          <td><span tal:replace="item/entry"/>&nbsp;</td>
-                          <td><span tal:replace="item/intermediate"/>&nbsp;</td>
-                          <td><span tal:replace="item/senior"/>&nbsp;</td>
-                          <td><span tal:replace="item/advanced"/>&nbsp;</td>
-                          <td><span tal:replace="item/master"/>&nbsp;</td>
+                          <td tal:repeat="exp view/exp_levels">
+                              <span tal:replace="python:item[exp.value]"/>&nbsp;
+                          </td>
                       </tal:c>
                       <tal:c condition="not:item">
                           <td>&nbsp;</td>
-                          <td>&nbsp;</td>
-                          <td>&nbsp;</td>
-                          <td>&nbsp;</td>
-                          <td>&nbsp;</td>
-                          <td>&nbsp;</td>
+                          <td tal:repeat="exp view/exp_levels">&nbsp;</td>
                       </tal:c>
                   </tr>
               </tal:block>
           </tbody>
       </table>
       <h2>Soft Skills Competency</h2>
-      <table class="dkiscm-skilltable">
+      <table class="dkiscm-skilltable plain" 
+          tal:define="cols view/softskills_competency_columns">
           <thead>
               <tr>
                   <th>No</th>
                   <th>Skill</th>
-                  <th>1</th>
-                  <th>2</th>
-                  <th>3</th>
-                  <th>4</th>
-                  <th>5</th>
+                  <th tal:repeat="col cols">
+                      <tal:r define="idx repeat/col/index"
+                          replace="python:idx + 1"/>
+                  </th>
               </tr>
           </thead>
           <tbody>
@@ -173,19 +161,13 @@
                       </td>
                       <tal:c condition="item">
                           <td><span tal:replace="item/skill"/>&nbsp;</td>
-                          <td><span tal:replace="item/col1"/>&nbsp;</td>
-                          <td><span tal:replace="item/col2"/>&nbsp;</td>
-                          <td><span tal:replace="item/col3"/>&nbsp;</td>
-                          <td><span tal:replace="item/col4"/>&nbsp;</td>
-                          <td><span tal:replace="item/col5"/>&nbsp;</td>
+                          <td tal:repeat="col cols">
+                              <span tal:replace="python:item[col]"/>&nbsp;
+                          </td>
                       </tal:c>
                       <tal:c condition="not:item">
                           <td>&nbsp;</td>
-                          <td>&nbsp;</td>
-                          <td>&nbsp;</td>
-                          <td>&nbsp;</td>
-                          <td>&nbsp;</td>
-                          <td>&nbsp;</td>
+                          <td tal:repeat="col cols">&nbsp;</td>
                       </tal:c>
                   </tr>
               </tal:block>

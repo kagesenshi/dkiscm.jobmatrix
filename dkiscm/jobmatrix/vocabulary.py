@@ -59,7 +59,7 @@ class EducationVocabularyFactory(BaseVocabularyFactory):
         'value': 'master'
     }]
 
-class ExperienceVocabularyFactory(BaseVocabularyFactory):
+class ExperienceYearsVocabularyFactory(BaseVocabularyFactory):
     grok.name('dkiscm.jobmatrix.experienceyears')
 
     terms = [{
@@ -79,4 +79,24 @@ class ExperienceVocabularyFactory(BaseVocabularyFactory):
         'value': 'master'
     }]
 
+
+class ExperienceVocabularyFactory(BaseVocabularyFactory):
+    grok.name('dkiscm.jobmatrix.experience')
+
+    terms = [{
+        'title': 'Entry',
+        'value': 'entry'
+    },{
+        'title': 'Intermediate',
+        'value': 'intermediate',
+    },{
+        'title': 'Senior',
+        'value': 'senior',
+    },{
+        'title': 'Advanced',
+        'value': 'advanced'
+    },{
+        'title': 'Master',
+        'value': 'master'
+    }]
 

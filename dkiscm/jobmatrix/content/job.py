@@ -74,7 +74,6 @@ EMPTY_ROW={
 class IIntRangeGrid(form.Schema):
     entry = schema.TextLine(
         title=_(u'Entry'),
-        description=u'Please enter in format [start]-[end] (eg: 3-6)',
         required=False,
         constraint=isIntRange,
         default=u'',
@@ -82,7 +81,6 @@ class IIntRangeGrid(form.Schema):
 
     intermediate = schema.TextLine(
         title=_(u'Intermediate'),
-        description=u'Please enter in format [start]-[end] (eg: 3-6)',
         required=False,
         constraint=isIntRange,
         default=u'',
@@ -90,7 +88,6 @@ class IIntRangeGrid(form.Schema):
 
     senior = schema.TextLine(
         title=_(u'Senior'),
-        description=u'Please enter in format [start]-[end] (eg: 3-6)',
         required=False,
         constraint=isIntRange,
         default=u'',
@@ -98,7 +95,6 @@ class IIntRangeGrid(form.Schema):
 
     advanced = schema.TextLine(
         title=_(u'Advanced'),
-        description=u'Please enter in format [start]-[end] (eg: 3-6)',
         required=False,
         constraint=isIntRange,
         default=u'',
@@ -106,7 +102,6 @@ class IIntRangeGrid(form.Schema):
 
     master = schema.TextLine(
         title=_(u'Master'),
-        description=u'Please enter in format [start]-[end] (eg: 3-6)',
         required=False,
         constraint=isIntRange,
         default=u'',
@@ -121,31 +116,31 @@ class ISalaryRangeGrid(IIntRangeGrid):
 
 class IIndustryCertificationGrid(form.Schema):
 
-    entry = schema.Text(
+    entry = schema.TextLine(
         title=_(u'Entry'),
         required=False,
         default=u'',
     )
 
-    intermediate = schema.Text(
+    intermediate = schema.TextLine(
         title=_(u'Intermediate'),
         required=False,
         default=u'',
     )
 
-    senior = schema.Text(
+    senior = schema.TextLine(
         title=_(u'Senior'),
         required=False,
         default=u'',
     )
 
-    advanced = schema.Text(
+    advanced = schema.TextLine(
         title=_(u'Advanced'),
         required=False,
         default=u'',
     )
 
-    master = schema.Text(
+    master = schema.TextLine(
         title=_(u'Master'),
         required=False,
         default=u'',
@@ -153,37 +148,37 @@ class IIndustryCertificationGrid(form.Schema):
 
 class ISkillGrid(form.Schema):
 
-    skill = schema.Text(
+    skill = schema.TextLine(
         title=_(u'Skill'),
         required=False,
         default=u'',
     )
 
-    entry = schema.Text(
+    entry = schema.TextLine(
         title=_(u'Entry'),
         required=False,
         default=u'',
     )
 
-    intermediate = schema.Text(
+    intermediate = schema.TextLine(
         title=_(u'Intermediate'),
         required=False,
         default=u'',
     )
 
-    senior = schema.Text(
+    senior = schema.TextLine(
         title=_(u'Senior'),
         required=False,
         default=u'',
     )
 
-    advanced = schema.Text(
+    advanced = schema.TextLine(
         title=_(u'Advanced'),
         required=False,
         default=u'',
     )
 
-    master = schema.Text(
+    master = schema.TextLine(
         title=_(u'Master'),
         required=False,
         default=u'',
@@ -197,37 +192,37 @@ class ISkillGrid(form.Schema):
 
 class ISoftSkillGrid(form.Schema):
 
-    skill = schema.Text(
+    skill = schema.TextLine(
         title=_(u'Skill'),
         required=False,
         default=u'',
     )
 
-    col1 = schema.Text(
+    col1 = schema.TextLine(
         title=_(u'1'),
         required=False,
         default=u'',
     )
 
-    col2 = schema.Text(
+    col2 = schema.TextLine(
         title=_(u'2'),
         required=False,
         default=u'',
     )
 
-    col3 = schema.Text(
+    col3 = schema.TextLine(
         title=_(u'3'),
         required=False,
         default=u'',
     )
 
-    col4 = schema.Text(
+    col4 = schema.TextLine(
         title=_(u'4'),
         required=False,
         default=u'',
     )
 
-    col5 = schema.Text(
+    col5 = schema.TextLine(
         title=_(u'5'),
         required=False,
         default=u'',
@@ -250,6 +245,14 @@ class IJob(form.Schema, IImageScaleTraversable):
         required=True
     )
 
+    exp_levels = schema.List(
+        title=_(u'Experience levels'),
+        required=True,
+        value_type=schema.Choice(
+            vocabulary='dkiscm.jobmatrix.experience'
+        )
+    )
+
     education = schema.Choice(
         title=_(u'Education'),
         vocabulary='dkiscm.jobmatrix.education',
@@ -261,12 +264,10 @@ class IJob(form.Schema, IImageScaleTraversable):
         required=False
     )
 
-    similar_jobs = RelationList(
-        title=_(u'Similar Jobs'),
+    similar_job_titles = schema.List(
+        title=_(u'Similar Job Titles'),
         required=False,
-        value_type=RelationChoice(
-            source=ObjPathSourceBinder(object_provides='dkiscm.jobmatrix.content.job.IJob')
-        )
+        value_type=schema.TextLine()
     )
 
     form.widget(industry_certification=DataGridFieldFactory)

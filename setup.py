@@ -26,7 +26,7 @@ setup(name='dkiscm.jobmatrix',
       zip_safe=False,
       install_requires=[
           'setuptools',
-          'plone.app.dexterity',
+          'plone.app.dexterity [grok]',
           'plone.namedfile [blobs]',
           'collective.grok',
           'plone.app.referenceablebehavior',

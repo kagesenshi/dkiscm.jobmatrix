@@ -55,4 +55,20 @@ th h4 { color :#fff; }
     background: #eee;
 }
 
+.dkiscm-jobgrouping-table td {
+    padding:10px;
+    border:1px solid #000;
+}
 
+.dkiscm-jobgrouping-table td.selected-group {
+    background: #98C3CA;
+}
+
+.dkiscm-education-table td {
+    padding:10px;
+    border:1px solid #000;
+}
+
+.dkiscm-education-table td.selected-education {
+    background: #98C3CA;
+}
