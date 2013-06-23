@@ -30,7 +30,7 @@ import zope.schema.interfaces
 import zope.component
 import zope.interface
 from z3c.form.widget import FieldWidget
-
+from collective.dexteritytextindexer import searchable
 
 class SingleDataGridField(DataGridField):
 
@@ -240,6 +240,7 @@ class IJob(form.Schema, IImageScaleTraversable):
     Description of the Example Type
     """
 
+    searchable('job_code')
     job_code = schema.TextLine(
         title=_(u'Job Code'),
         required=True
@@ -253,17 +254,20 @@ class IJob(form.Schema, IImageScaleTraversable):
         )
     )
 
+    searchable('education')
     education = schema.Choice(
         title=_(u'Education'),
         vocabulary='dkiscm.jobmatrix.education',
         required=True
     )
 
+    searchable('education_description')
     education_description = schema.TextLine(
         title=_(u'Education Description'),
         required=False
     )
 
+    searchable('similar_job_titles')
     similar_job_titles = schema.List(
         title=_(u'Similar Job Titles'),
         required=False,
@@ -271,6 +275,7 @@ class IJob(form.Schema, IImageScaleTraversable):
     )
 
     form.widget(industry_certification=DataGridFieldFactory)
+    searchable('industry_certification')
     industry_certification = schema.List(
         title=u'Industry Certification',
         value_type=DictRow(schema=IIndustryCertificationGrid),
@@ -286,6 +291,7 @@ class IJob(form.Schema, IImageScaleTraversable):
     )
 
     form.widget(skills_competency=DataGridFieldFactory)
+    searchable('skills_competency')
     skills_competency = schema.List(
         title=_(u'Technical Skills Competency'),
         value_type=DictRow(schema=ISkillGrid),
@@ -293,6 +299,7 @@ class IJob(form.Schema, IImageScaleTraversable):
     )
 
     form.widget(softskills_competency=DataGridFieldFactory)
+    searchable('softskills_competency')
     softskills_competency = schema.List(
         title=_(u'Soft Skills Competency'),
         value_type=DictRow(schema=ISoftSkillGrid),
