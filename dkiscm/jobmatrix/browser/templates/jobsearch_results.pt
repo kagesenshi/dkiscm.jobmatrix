@@ -13,11 +13,20 @@
         <div metal:fill-slot="content-description">
         </div>
         <div metal:fill-slot="content-core">
-            <table style="width:100%">
+            <table style="width:100%" class="listing">
+                <thead>
+                    <th style="width:60%">Job Title</th>
+                    <th>Industry Cluster</th>
+                    <th>Experience Levels</th>
+                </thead>
                 <tr tal:repeat="item view/results">
                     <td>
                         <a tal:attributes="href item/url" 
                             tal:content="item/title"/>
+                    </td>
+                    <td tal:content="item/industry_cluster">
+                    </td>
+                    <td tal:content="item/exp_levels">
                     </td>
                 </tr>
             </table>

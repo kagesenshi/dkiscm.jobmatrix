@@ -67,10 +67,29 @@ class BaseJobSearchResults(grok.View):
         return result
 
     def _extract(self, brain):
-        return {
+        obj = brain.getObject()
+        clustervocab = getUtility(
+            IVocabularyFactory,
+            name='dkiscm.jobmatrix.industrycluster'
+        )(self.context)
+        expvocab = getUtility(
+            IVocabularyFactory,
+            name='dkiscm.jobmatrix.experience'
+        )(self.context)
+        data = {
             'title': brain.Title,
             'url': brain.getURL(),
+            'exp_levels': ','.join([
+                expvocab.getTerm(i).title for i in (obj.exp_levels or [])
+            ]),
+            'industry_cluster': ''
         }
+
+        if brain.industry_cluster and (
+                brain.industry_cluster != 'no-industry-cluster'):
+            data['industry_cluster'] = clustervocab.getTerm(brain.industry_cluster).title
+
+        return data
 
 class TopicJobSearchResults(BaseJobSearchResults):
     grok.context(IATTopic)
