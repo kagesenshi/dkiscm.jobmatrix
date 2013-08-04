@@ -63,10 +63,10 @@ class Index(dexterity.DisplayForm):
     def exp_levels(self):
         vocab = getUtility(IVocabularyFactory,
             name='dkiscm.jobmatrix.experience')(self.context)
-        result = []
-        for exp in (self.context.exp_levels or []):
-            result.append(vocab.getTerm(exp))
-        return result
+#        result = []
+#        for exp in (self.context.exp_levels or []):
+#            result.append(vocab.getTerm(exp))
+        return [term for term in vocab]
 
     def softskills_competency_columns(self):
         competencies = self.context.softskills_competency
