@@ -67,7 +67,7 @@
                     <td style="vertical-align:top;">
                         <div class="dkiscm-jobtitles">
                             <h4>Similar Job Titles</h4>
-                            <div tal:content="structure view/w/similar_job_titles/render"></div>
+                            <div tal:content="python: ', '.join(context.similar_job_titles)"></div>
                         </div>
                     </td>
                 </tr>
@@ -91,7 +91,15 @@
                       <tal:block condition="python:exp.value in context.exp_levels" replace="exp/title"/>
                   </td>
               </tr>
+
               <tr class="required-row">
+                  <td>2</td>
+                  <td class="dkiscm-description-column">Professional Certification</td>
+                  <td colspan="5"
+                      tal:content="python:', '.join(context.professional_certification)">
+                  </td>
+              </tr>
+              <tr class="required-row" tal:replace="nothing">
                   <td>2</td>
                   <td class="dkiscm-description-column">Industry Certification</td>
                   <tal:block define="vals context/industry_certification|nothing;

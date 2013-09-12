@@ -50,16 +50,18 @@ def SingleDataGridFieldFactory(field, request):
     """IFieldWidget factory for DataGridField."""
     return FieldWidget(field, SingleDataGridField(request))
 
-
-
 # Interface class; used to define content-type schema.
 class InvalidIntegerRange(schema.ValidationError):
-    __doc__ = u'Please enter range using [start]-[end] format. eg: 3-6'
+    __doc__ = u'Accepted range format are "< 2000", "2000-5000", "> 5000"'
 
 def isIntRange(value):
     if not value:
         return True
-    if not re.match('(\d+)-(\d+)', value):
+    if not (
+        re.match('(\d+)-(\d+)', value) or
+        re.match('< (\d+)', value) or
+        re.match('> (\d+)', value)
+        ):
         raise InvalidIntegerRange()
     return True
 
@@ -272,6 +274,13 @@ class IJob(form.Schema, IImageScaleTraversable):
         title=_(u'Similar Job Titles'),
         required=False,
         value_type=schema.TextLine()
+    )
+
+    searchable('professional_certification')
+    professional_certification = schema.List(
+        title=u'Professional Certification',
+        value_type=schema.TextLine(),
+        required=False
     )
 
     form.widget(industry_certification=DataGridFieldFactory)

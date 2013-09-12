@@ -76,4 +76,4 @@ class Index(dexterity.DisplayForm):
                 cols.setdefault(col, [])
                 if c[col]:
                     cols[col].append(c[col])
-        return sorted([c for c in cols if cols[c]])
+        return sorted([c for c in cols if ('col' in c)])
