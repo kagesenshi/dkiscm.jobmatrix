@@ -29,6 +29,7 @@
 
         <metal:content-core define-macro="content-core">
 
+            <div style="text-align:right"><a tal:attributes="href string:${context/absolute_url}/pdf_export_view">Download PDF</a></div>
             <table class="dkiscm-job-information">
                 <tr>
                     <td rowspan="2" class="left-box">
