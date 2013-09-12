@@ -34,6 +34,8 @@ setup(name='dkiscm.jobmatrix',
           'plone.app.multilingual',
           'plone.multilingualbehavior',
           'collective.z3cform.datagridfield',
+          'xhtml2pdf',
+          'pypdf',
           # -*- Extra requirements: -*-
       ],
       extras_require={
