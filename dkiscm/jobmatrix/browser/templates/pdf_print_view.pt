@@ -16,7 +16,7 @@
             .descriptioncolumn { background: #7F858E; }
             .educationtable,
             .jobgroupingtable { 
-                border:1px solid #000000; 
+                border:1px solid #ffffff; 
                 font-size: 8px;
                 padding: 4px 2px 0 2px;
                 text-align:center;
@@ -50,7 +50,7 @@
                 style="border-top:2px solid #000;border-bottom:2px solid #000;padding-top:5px;
                        margin-bottom:10px;">
                 <tr>
-                    <td rowspan="2" class="left-box" style="padding:5px 10px;">
+                    <td rowspan="2" class="left-box" style="padding:5px 10px;background:#7F858E;color: #ffffff">
                         <div class="dkiscm-jobgrouping">
                             <h4>Job Grouping</h4>
                             <table class="jobgroupingtable">
@@ -75,7 +75,7 @@
                             <div style="font-size:8px">* <span tal:replace="structure view/w/education_description/render"/></div>
                         </div>
                     </td>
-                    <td style="vertical-align:top;">
+                    <td style="vertical-align:top;padding:5px;">
                         <div class="dkiscm-jobdescription">
                             <h4>Job Description</h4>
                             <p style="font-size:10px"
@@ -84,7 +84,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td style="vertical-align:top;">
+                    <td style="vertical-align:top;padding:5px;">
                         <div class="dkiscm-jobtitles">
                             <h4>Similar Job Titles</h4>
                             <div style="font-size:10px"
