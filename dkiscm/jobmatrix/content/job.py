@@ -360,3 +360,15 @@ class IJob(form.Schema, IImageScaleTraversable):
         title=_(u'Suitable for Entry'),
         default=False
     )
+
+    job_demand = schema.Int(
+        title=_(u'Job Demand'),
+        default=0,
+        required=False
+    )
+
+    job_demand_synovate2013 = schema.Int(
+        title=_(u'Job Demand Synovate 2013'),
+        default=0,
+        required=False,
+    )
