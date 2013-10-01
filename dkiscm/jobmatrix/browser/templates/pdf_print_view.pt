@@ -27,6 +27,31 @@
             .selected-group {
                 background: #D95943;
             }
+
+.required-cell {
+    background: #98C3CA !important;
+}
+
+.weight-cell-1 {
+    background: #98C3CA !important;
+}
+
+.weight-cell-2 {
+    background: #98C3EB !important;
+}
+
+.weight-cell-3 {
+    background: #98E1FF !important;
+}
+
+.weight-cell-4 {
+    background: #98F0FF !important;
+}
+
+.weight-cell-5 {
+    background: #D0F0FF !important;
+}
+
         </style>
     </head>
     <body style="font-size:10px">
@@ -105,49 +130,30 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr class="required-row">
+                    <tr>
                         <td style="width:20px;text-align:center">1</td>
                         <td class="descriptioncolumn">Industry Experience</td>
                         <td tal:repeat="exp view/industry_experience"
-                            tal:attributes="class python:'has_value' if exp.value in context.exp_levels else ''">
+                            tal:attributes="class python:'required-cell' if exp.value in context.exp_levels else ''">
                             <tal:block condition="python:exp.value in context.exp_levels" replace="exp/title"/>
                         </td>
                     </tr>
 
-                    <tr class="required-row">
+                    <tr>
                         <td style="width:20px;text-align:center">2</td>
                         <td class="descriptioncolumn">Professional Certification</td>
                         <td colspan="5"
                             tal:content="python:', '.join(context.professional_certification)">
                         </td>
                     </tr>
-                    <tr class="required-row" tal:replace="nothing">
-                        <td style="width:20px;text-align:center">2</td>
-                        <td class="descriptioncolumn">Industry Certification</td>
-                        <tal:block define="vals context/industry_certification|nothing;
-                            item python:vals[0] if vals else None">
-                            <tal:c condition="item">
-                                <td tal:repeat="exp view/exp_levels"
-                                    class="has_value">
-                                    <span tal:replace="python:item[exp.value]"/>&nbsp;
-                                </td>
-                            </tal:c>
-                            <tal:c condition="not:item">
-                                <td tal:repeat="exp view/exp_levels">&nbsp;</td>
-                            </tal:c>
-
-                        </tal:block>
-
-                    </tr>
-
-                    <tr class="required-row">
+                    <tr>
                         <td style="width:20px;text-align:center">3</td>
                         <td class="descriptioncolumn">Salary Range</td>
                         <tal:block define="vals context/salary_range|nothing;
                             item python:vals[0] if vals else None">
                             <tal:c condition="item">
                                 <td tal:repeat="exp view/exp_levels"
-                                    class="has_value">
+                                    tal:attributes="class python:'required-cell' if item[exp.value] else ''">
                                     <span tal:replace="python:item[exp.value]"/>&nbsp;
                                 </td>
                             </tal:c>
@@ -171,7 +177,7 @@
                 </thead>
                 <tbody>
                     <tal:block repeat="item context/skills_competency">
-                        <tr tal:attributes="class python:'required-row' if item['is_required'] else ''">
+                        <tr>
                             <td style="width:20px;text-align:center"
                                 tal:define="idx repeat/item/index">
                                 <tal:r replace="python:idx + 1"/>
@@ -181,8 +187,8 @@
                                     <span tal:replace="item/skill"/>&nbsp;
                                 </td>
                                 <td tal:repeat="exp view/exp_levels"
-                                    tal:attributes="class python:'has_value' if (
-                                    item[exp.value] and item[exp.value].strip()) else ''">
+                                    tal:attributes="class python:'required-cell' if (
+                                    item['%s_required' % exp.value]) else ''">
                                     <span tal:replace="python:item[exp.value]"/>&nbsp;
                                 </td>
                             </tal:c>
@@ -205,15 +211,12 @@
                         <th style="width:20px;text-align:center" 
                             class="dkiscm-number-column">No</th>
                         <th>Skill</th>
-                        <th class="dkiscm-value-column" tal:repeat="col cols">
-                            <tal:r define="idx repeat/col/index"
-                                replace="python:idx + 1"/>
-                        </th>
+                        <th class="dkiscm-value-column" tal:repeat="exp view/exp_levels" tal:content="exp/title"></th>
                     </tr>
                 </thead>
                 <tbody>
                     <tal:block repeat="item context/softskills_competency">
-                        <tr tal:attributes="class python:'required-row' if item['is_required'] else ''">
+                        <tr>
                             <td style="width:20px;text-align:center" 
                                 tal:define="idx repeat/item/index">
                                 <tal:r replace="python:idx + 1"/>
@@ -222,9 +225,11 @@
                                 <td class="descriptioncolumn">
                                     <span tal:replace="item/skill"/>&nbsp;
                                 </td>
-                                <td tal:repeat="col cols"
-                                    tal:attributes="class python:'has_value' if (item[col] and item[col].strip()) else ''">
-                                    <span tal:replace="python:item[col]"/>&nbsp;
+                                <td tal:repeat="exp view/exp_levels"
+                                    tal:attributes="class python:'weight-cell-%s' % (
+                                    item['%s_weight' % exp.value]) if (
+                                    item['%s_weight' % exp.value]) else ''">
+                                    <span tal:replace="python:item[exp.value]"/>&nbsp;
                                 </td>
                             </tal:c>
                             <tal:c condition="not:item">
