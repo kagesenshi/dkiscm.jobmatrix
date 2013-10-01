@@ -84,30 +84,30 @@
               </tr>
           </thead>
           <tbody>
-              <tr class="required-row">
+              <tr>
                   <td>1</td>
                   <td class="dkiscm-description-column">Industry Experience</td>
                   <td tal:repeat="exp view/industry_experience"
-                      tal:attributes="class python:'has_value' if exp.value in context.exp_levels else ''">
+                      tal:attributes="class python:'required-cell' if exp.value in context.exp_levels else ''">
                       <tal:block condition="python:exp.value in context.exp_levels" replace="exp/title"/>
                   </td>
               </tr>
 
-              <tr class="required-row">
+              <tr>
                   <td>2</td>
                   <td class="dkiscm-description-column">Professional Certification</td>
                   <td colspan="5"
                       tal:content="python:', '.join(context.professional_certification)">
                   </td>
               </tr>
-              <tr class="required-row" tal:replace="nothing">
+              <tr tal:replace="nothing">
                   <td>2</td>
                   <td class="dkiscm-description-column">Industry Certification</td>
                   <tal:block define="vals context/industry_certification|nothing;
                       item python:vals[0] if vals else None">
                       <tal:c condition="item">
                           <td tal:repeat="exp view/exp_levels"
-                              class="has_value">
+                              class="required-cell">
                               <span tal:replace="python:item[exp.value]"/>&nbsp;
                           </td>
                       </tal:c>
@@ -119,14 +119,14 @@
 
               </tr>
 
-              <tr class="required-row">
+              <tr>
                   <td>3</td>
                   <td class="dkiscm-description-column">Salary Range</td>
                   <tal:block define="vals context/salary_range|nothing;
                       item python:vals[0] if vals else None">
                       <tal:c condition="item">
                           <td tal:repeat="exp view/exp_levels"
-                              class="has_value">
+                              tal:attributes="class python:'required-cell' if item[exp.value] else ''">
                               <span tal:replace="python:item[exp.value]"/>&nbsp;
                           </td>
                       </tal:c>
@@ -149,7 +149,7 @@
           </thead>
           <tbody>
               <tal:block repeat="item context/skills_competency">
-                  <tr tal:attributes="class python:'required-row' if item['is_required'] else ''">
+                  <tr>
                       <td tal:define="idx repeat/item/index">
                           <tal:r replace="python:idx + 1"/>
                       </td>
@@ -158,8 +158,8 @@
                               <span tal:replace="item/skill"/>&nbsp;
                           </td>
                           <td tal:repeat="exp view/exp_levels"
-                              tal:attributes="class python:'has_value' if (
-                                    item[exp.value] and item[exp.value].strip()) else ''">
+                              tal:attributes="class python:'required-cell' if (
+                                    item['%s_required' % exp.value]) else ''">
                               <span tal:replace="python:item[exp.value]"/>&nbsp;
                           </td>
                       </tal:c>
@@ -178,15 +178,12 @@
               <tr>
                   <th class="dkiscm-number-column">No</th>
                   <th>Skill</th>
-                  <th class="dkiscm-value-column" tal:repeat="col cols">
-                      <tal:r define="idx repeat/col/index"
-                          replace="python:idx + 1"/>
-                  </th>
+                  <th class="dkiscm-value-column" tal:repeat="exp view/exp_levels" tal:content="exp/title"></th>
               </tr>
           </thead>
           <tbody>
               <tal:block repeat="item context/softskills_competency">
-                  <tr tal:attributes="class python:'required-row' if item['is_required'] else ''">
+                  <tr>
                       <td tal:define="idx repeat/item/index">
                           <tal:r replace="python:idx + 1"/>
                       </td>
@@ -194,9 +191,11 @@
                           <td class="dkiscm-description-column">
                               <span tal:replace="item/skill"/>&nbsp;
                           </td>
-                          <td tal:repeat="col cols"
-                              tal:attributes="class python:'has_value' if (item[col] and item[col].strip()) else ''">
-                              <span tal:replace="python:item[col]"/>&nbsp;
+                          <td tal:repeat="exp view/exp_levels"
+                              tal:attributes="class python:'weight-cell-%s' % (
+                             item['%s_weight' % exp.value]) if (
+                                    item['%s_weight' % exp.value]) else ''">
+                              <span tal:replace="python:item[exp.value]"/>&nbsp;
                           </td>
                       </tal:c>
                       <tal:c condition="not:item">

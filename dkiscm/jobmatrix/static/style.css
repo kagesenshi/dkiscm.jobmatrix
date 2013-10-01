@@ -165,6 +165,26 @@ th h4 { color :#fff; }
     background: #BFC1C3 !important;
 }
 
-.required-row .has_value {
-    background: #98C3CA;
+.required-cell {
+    background: #98C3CA !important;
+}
+
+.weight-cell-1 {
+    background: #98C3CA !important;
+}
+
+.weight-cell-2 {
+    background: #98C3EB !important;
+}
+
+.weight-cell-3 {
+    background: #98E1FF !important;
+}
+
+.weight-cell-4 {
+    background: #98F0FF !important;
+}
+
+.weight-cell-5 {
+    background: #D0F0FF !important;
 }

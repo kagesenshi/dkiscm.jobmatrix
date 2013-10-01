@@ -77,35 +77,30 @@ class IIntRangeGrid(form.Schema):
     entry = schema.TextLine(
         title=_(u'Entry'),
         required=False,
-        constraint=isIntRange,
         default=u'',
     )
 
     intermediate = schema.TextLine(
         title=_(u'Intermediate'),
         required=False,
-        constraint=isIntRange,
         default=u'',
     )
 
     senior = schema.TextLine(
         title=_(u'Senior'),
         required=False,
-        constraint=isIntRange,
         default=u'',
     )
 
     advanced = schema.TextLine(
         title=_(u'Advanced'),
         required=False,
-        constraint=isIntRange,
         default=u'',
     )
 
     master = schema.TextLine(
         title=_(u'Master'),
         required=False,
-        constraint=isIntRange,
         default=u'',
     )
 
@@ -162,10 +157,23 @@ class ISkillGrid(form.Schema):
         default=u'',
     )
 
+    entry_required = schema.Bool(
+        title=_(u'Required'),
+        required=False,
+        default=False
+    )
+
     intermediate = schema.TextLine(
         title=_(u'Intermediate'),
         required=False,
         default=u'',
+    )
+
+
+    intermediate_required = schema.Bool(
+        title=_(u'Required'),
+        required=False,
+        default=False
     )
 
     senior = schema.TextLine(
@@ -174,10 +182,22 @@ class ISkillGrid(form.Schema):
         default=u'',
     )
 
+    senior_required = schema.Bool(
+        title=_(u'Required'),
+        required=False,
+        default=False
+    )
+
     advanced = schema.TextLine(
         title=_(u'Advanced'),
         required=False,
         default=u'',
+    )
+
+    advanced_required = schema.Bool(
+        title=_(u'Required'),
+        required=False,
+        default=False
     )
 
     master = schema.TextLine(
@@ -186,11 +206,12 @@ class ISkillGrid(form.Schema):
         default=u'',
     )
 
-    is_required=schema.Bool(
-        title=_(u'Mark row as required'),
-        default=False,
-        required=False
+    master_required = schema.Bool(
+        title=_(u'Required'),
+        required=False,
+        default=False
     )
+
 
 class ISoftSkillGrid(form.Schema):
 
@@ -200,40 +221,60 @@ class ISoftSkillGrid(form.Schema):
         default=u'',
     )
 
-    col1 = schema.TextLine(
-        title=_(u'1'),
+    entry = schema.TextLine(
+        title=_(u'Entry'),
         required=False,
         default=u'',
     )
 
-    col2 = schema.TextLine(
-        title=_(u'2'),
+    entry_weight = schema.Choice(
+        title=_(u'Weight'),
+        vocabulary='dkiscm.jobmatrix.skillweight',
+    )
+
+    intermediate = schema.TextLine(
+        title=_(u'Intermediate'),
         required=False,
         default=u'',
     )
 
-    col3 = schema.TextLine(
-        title=_(u'3'),
+    intermediate_weight = schema.Choice(
+        title=_(u'Weight'),
+        vocabulary='dkiscm.jobmatrix.skillweight',
+    )
+
+    senior = schema.TextLine(
+        title=_(u'Senior'),
         required=False,
         default=u'',
     )
 
-    col4 = schema.TextLine(
-        title=_(u'4'),
+    senior_weight = schema.Choice(
+        title=_(u'Weight'),
+        vocabulary='dkiscm.jobmatrix.skillweight'
+    )
+
+    advanced = schema.TextLine(
+        title=_(u'Advanced'),
         required=False,
         default=u'',
     )
 
-    col5 = schema.TextLine(
-        title=_(u'5'),
+
+    advanced_weight = schema.Choice(
+        title=_(u'Weight'),
+        vocabulary='dkiscm.jobmatrix.skillweight'
+    )
+
+    master = schema.TextLine(
+        title=_(u'Master'),
         required=False,
         default=u'',
     )
 
-    is_required=schema.Bool(
-        title=_(u'Mark row as required'),
-        default=False,
-        required=False
+    master_weight = schema.Choice(
+        title=_(u'Weight'),
+        vocabulary='dkiscm.jobmatrix.skillweight'
     )
 
 

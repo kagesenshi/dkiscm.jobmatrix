@@ -100,3 +100,10 @@ class ExperienceVocabularyFactory(BaseVocabularyFactory):
         'value': 'master'
     }]
 
+class SkillWeightVocabularyFactory(BaseVocabularyFactory):
+    grok.name('dkiscm.jobmatrix.skillweight')
+
+    terms = [{
+        'title': str(i),
+        'value': i
+    } for i in range(1,6)]
