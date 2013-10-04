@@ -185,7 +185,7 @@
                           <td tal:repeat="exp view/exp_levels"
                               tal:attributes="class python:'weight-cell-%s' % (
                              item['%s_weight' % exp.value]) if (
-                                    item['%s_weight' % exp.value]) else ''">
+                                    item[exp.value]) else ''">
                               <span tal:replace="python:item[exp.value]"/>&nbsp;
                           </td>
                       </tal:c>
