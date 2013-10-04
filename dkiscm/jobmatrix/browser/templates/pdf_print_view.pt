@@ -32,25 +32,38 @@
     background: #98C3CA !important;
 }
 
+.weight-table {
+    width:200px;
+}
+
+.weight-table td {
+    text-align:center;
+}
+
 .weight-cell-1 {
-    background: #98C3CA !important;
+    background: #5858FA !important;
 }
 
 .weight-cell-2 {
-    background: #98C3EB !important;
+    background: #2E2EFE !important;
+    color:#fff !important
 }
 
 .weight-cell-3 {
-    background: #98E1FF !important;
+    background: #0000FF !important;
+    color:#fff !important;
 }
 
 .weight-cell-4 {
-    background: #98F0FF !important;
+    background: #0101DF !important;
+    color:#fff !important;
 }
 
 .weight-cell-5 {
-    background: #D0F0FF !important;
+    background: #0404B4 !important;
+    color:#fff !important;
 }
+
 
         </style>
     </head>
@@ -166,6 +179,7 @@
             </table>
 
             <h2>Technical Skills Competency</h2>
+            <p style="font-size:10px">(Note: Skills marked in darker color are 'required skills'; skills marked in lighter color are 'elective skills')</p>
             <table class="skilltable">
                 <thead>
                     <tr>
@@ -203,6 +217,16 @@
 
             <pdf:nextpage/>
             <h2>Soft Skills Competency</h2>
+            <p style="font-size:10px">(Note: Soft Skills are specified in a scale of '1 - least important' to '5 - most important')</p>
+            <table class="weight-table" style="width:20px !important">
+                <tr>
+                    <td tal:repeat="weight python:range(1,6)"
+                        style="width:20px;font-size:10px;padding-top:3px;padding-left:4px;"
+                        tal:attributes="class string:weight-cell-${weight}"
+                        tal:content="weight">
+                    </td>
+                </tr>
+            </table>
             <table class="skilltable"
                 style='font-weight:normal'
                 tal:define="cols view/softskills_competency_columns">

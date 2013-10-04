@@ -120,6 +120,7 @@
       </table>
 
       <h2>Technical Skills Competency</h2>
+      <p>(Note: Skills marked in darker color are 'required skills'; skills marked in lighter color are 'elective skills')</p>
       <table class="dkiscm-skilltable plain">
           <thead>
               <tr>
@@ -153,6 +154,15 @@
           </tbody>
       </table>
       <h2>Soft Skills Competency</h2>
+      <p>(Note: Soft Skills are specified in a scale of '1 – least important' to '5 – most important')</p>
+      <table class="weight-table">
+          <tr>
+              <td tal:repeat="weight python:range(1,6)"
+                  tal:attributes="class string:weight-cell-${weight}"
+                  tal:content="weight">
+              </td>
+          </tr>
+      </table>
       <table class="dkiscm-skilltable plain" 
           tal:define="cols view/softskills_competency_columns">
           <thead>

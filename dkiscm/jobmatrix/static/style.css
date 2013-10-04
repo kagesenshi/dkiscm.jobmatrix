@@ -169,22 +169,34 @@ th h4 { color :#fff; }
     background: #98C3CA !important;
 }
 
+.weight-table {
+    width:200px;
+}
+
+.weight-table td {
+    text-align:center;
+}
+
 .weight-cell-1 {
-    background: #98C3CA !important;
+    background: #5858FA !important;
 }
 
 .weight-cell-2 {
-    background: #98C3EB !important;
+    background: #2E2EFE !important;
+    color:#fff !important
 }
 
 .weight-cell-3 {
-    background: #98E1FF !important;
+    background: #0000FF !important;
+    color:#fff !important;
 }
 
 .weight-cell-4 {
-    background: #98F0FF !important;
+    background: #0101DF !important;
+    color:#fff !important;
 }
 
 .weight-cell-5 {
-    background: #D0F0FF !important;
+    background: #0404B4 !important;
+    color:#fff !important;
 }
