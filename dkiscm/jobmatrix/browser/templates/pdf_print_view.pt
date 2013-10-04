@@ -42,6 +42,7 @@
 
 .weight-cell-1 {
     background: #5858FA !important;
+    color:#fff !important;
 }
 
 .weight-cell-2 {
