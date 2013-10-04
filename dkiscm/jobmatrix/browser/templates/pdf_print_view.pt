@@ -217,7 +217,7 @@
 
             <pdf:nextpage/>
             <h2>Soft Skills Competency</h2>
-            <p style="font-size:10px">(Note: Soft Skills are specified in a scale of '1 - least important' to '5 - most important')</p>
+            <p style="font-size:10px;font-weight:normal">(Note: Lighter color gradient indicates basic level proficiency; darker color gradient indicates higher level proficiency)</p>
             <table class="weight-table" style="width:20px !important">
                 <tr>
                     <td tal:repeat="weight python:range(1,6)"
