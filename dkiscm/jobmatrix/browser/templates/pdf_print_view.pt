@@ -128,6 +128,7 @@
                         <div class="dkiscm-jobtitles">
                             <h4>Similar Job Titles</h4>
                             <div style="font-size:10px"
+                                tal:condition="context/similar_job_titles"
                                 tal:content="python: ', '.join(context.similar_job_titles)"></div>
                         </div>
                     </td>
@@ -157,8 +158,9 @@
                     <tr>
                         <td style="width:20px;text-align:center">2</td>
                         <td class="descriptioncolumn">Professional Certification</td>
-                        <td colspan="5"
-                            tal:content="python:', '.join(context.professional_certification)">
+                        <td colspan="5">
+                            <tal:block condition="context/professional_certification"
+                                replace="python:', '.join(context.professional_certification)"/>
                         </td>
                     </tr>
                     <tr>
