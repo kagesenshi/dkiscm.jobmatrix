@@ -172,6 +172,16 @@ class Index(dexterity.DisplayForm):
         }
 
 
+    def job_demand(self):
+        if self.context.job_demand_synovate2013 <= 15:
+            return 'low'
+        if self.context.job_demand_synovate2013 <= 150:
+            return 'medium'
+        if self.context.job_demand_synovate2013 > 150:
+            return 'high'
+        return 'low'
+
+
 class PDFPrintView(Index):
     grok.name('pdf_print_view')
     grok.template('pdf_print_view')

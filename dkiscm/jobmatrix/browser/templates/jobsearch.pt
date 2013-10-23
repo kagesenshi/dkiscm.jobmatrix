@@ -9,7 +9,7 @@
     </head>
     <body >
         <div metal:fill-slot="content-core"
-            tal:define="resurl string:${context/portal_url}/++resource++dkiscm.jobmatrix/">
+            tal:define="resurl string:${context/portal_url}/++resource++dkiscm.jobmatrix">
             <div class="dkiscm-frontpage-wrapper">
             <form tal:attributes="action string:${context/absolute_url}/jobsearch_results"
                 method="GET">

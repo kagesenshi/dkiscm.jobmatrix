@@ -42,7 +42,8 @@
     </head>
     <body style="font-size:10px">
 
-        <table style="width:100%;" class="dkiscm-job-titletable">
+        <table style="width:100%;" class="dkiscm-job-titletable"
+            tal:define="resurl string:${context/portal_url}/++resource++dkiscm.jobmatrix">
             <tr>
                 <td style="width:200px">
                     <h4 style="font-size:12px">Job Code</h4>
@@ -52,6 +53,15 @@
                     <h4 style="font-size:12px">Job Type</h4>
                     <h1 style="font-size:16px"><tal:block replace="context/pretty_title_or_id"/></h1>
                 </td>
+                <td style="text-align:right">
+                    <img style="height:50px;width:50px"
+                        tal:condition="context/suitable_for_entry"
+                        tal:attributes="src string:${resurl}/suitable-for-entry.png"/>
+                    <img 
+                        style="height:50px;width:50px"
+                        tal:attributes="src string:${resurl}/job-demand-${view/job_demand}.png"/>
+                </td>
+
             </tr>
         </table>
 
