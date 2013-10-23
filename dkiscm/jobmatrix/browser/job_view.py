@@ -5,6 +5,7 @@ from zope.schema.interfaces import IVocabularyFactory
 from zope.component import getUtility
 from Acquisition import aq_parent
 from dkiscm.jobmatrix.content.jobgroup import IJobGroup
+from dkiscm.jobmatrix.content.industrycluster import IIndustryCluster
 from Products.CMFCore.interfaces import ISiteRoot
 import xhtml2pdf.pisa as pisa
 from StringIO import StringIO
@@ -25,6 +26,16 @@ class Index(dexterity.DisplayForm):
     grok.require('zope2.View')
     grok.template('job_view')
     grok.name('view')
+
+
+    def cluster(self):
+        group = aq_parent(self.context)
+        if not IJobGroup.providedBy(group):
+            return None
+        cluster = aq_parent(group)
+        if not IIndustryCluster.providedBy(cluster):
+            return None
+        return cluster
 
     def industry_experience(self):
         vocab = getUtility(
@@ -89,6 +100,76 @@ class Index(dexterity.DisplayForm):
                 if c[col]:
                     cols[col].append(c[col])
         return sorted([c for c in cols if ('col' in c)])
+
+    def get_technical_skill_cell_class(self, item, experience):
+        if item['%s_required' % experience.value]:
+            return 'required-cell'
+        if experience.value in self.context.exp_levels:
+            return 'normal-cell'
+        return 'blank-cell'
+
+    def cluster_css(self):
+        cluster = self.cluster()
+        return u'''
+        .cluster-infobox {
+            background: %(infobox_bgcolor)s !important;
+        }
+
+        .dkiscm-skilltable th {
+            background: %(th_bgcolor)s !important;
+        }
+
+        .normal-cell {
+            background: %(td_bgcolor)s !important;
+        }
+
+        .required-cell {
+            background: %(highlighted_td_bgcolor)s !important;
+        }
+
+        .dkiscm-description-column {
+            background: %(highlighted_td_bgcolor)s !important;
+        }
+
+        .descriptioncolumn {
+            background: %(highlighted_td_bgcolor)s !important;
+        }
+
+        .counter-cell {
+            background: %(highlighted_td_bgcolor)s !important;
+        }
+
+        .weight-cell-1 {
+            background: %(weight1_bgcolor)s !important;
+        }
+        
+        .weight-cell-2 {
+            background: %(weight2_bgcolor)s !important;
+        }
+        
+        .weight-cell-3 {
+            background: %(weight3_bgcolor)s !important;
+        }
+        
+        .weight-cell-4 {
+            background: %(weight4_bgcolor)s !important;
+        }
+        
+        .weight-cell-5 {
+            background: %(weight5_bgcolor)s !important;
+        }
+
+        ''' % {
+            'infobox_bgcolor': cluster.infobox_bgcolor,
+            'th_bgcolor': cluster.th_bgcolor,
+            'td_bgcolor': cluster.td_bgcolor,
+            'highlighted_td_bgcolor': cluster.highlighted_td_bgcolor,
+            'weight1_bgcolor': cluster.weight1_bgcolor,
+            'weight2_bgcolor': cluster.weight2_bgcolor,
+            'weight3_bgcolor': cluster.weight3_bgcolor,
+            'weight4_bgcolor': cluster.weight4_bgcolor,
+            'weight5_bgcolor': cluster.weight5_bgcolor
+        }
 
 
 class PDFPrintView(Index):

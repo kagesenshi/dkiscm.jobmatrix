@@ -6,6 +6,11 @@
       metal:use-macro="context/main_template/macros/master"
       i18n:domain="dkiscm.jobmatrix">
       <head>
+          <metal:css fill-slot="style_slot">
+              <style tal:content="structure view/cluster_css">
+                  
+              </style>
+          </metal:css>
       </head>
       <body>
 
@@ -32,7 +37,7 @@
             <div style="text-align:right"><a tal:attributes="href string:${context/absolute_url}/pdf_export_view">Download PDF</a></div>
             <table class="dkiscm-job-information">
                 <tr>
-                    <td rowspan="2" class="left-box">
+                    <td rowspan="2" class="left-box cluster-infobox">
                         <div class="dkiscm-jobgrouping">
                             <h4>Job Grouping</h4>
                             <table class="dkiscm-jobgrouping-table">
@@ -87,7 +92,7 @@
           </thead>
           <tbody>
               <tr>
-                  <td>1</td>
+                  <td class="counter-cell">1</td>
                   <td class="dkiscm-description-column">Industry Experience</td>
                   <td tal:repeat="exp view/industry_experience"
                       tal:attributes="class python:'required-cell' if exp.value in context.exp_levels else ''">
@@ -96,16 +101,19 @@
               </tr>
 
               <tr>
-                  <td>2</td>
+                  <td class="counter-cell">2</td>
                   <td class="dkiscm-description-column">Professional Certification</td>
-                  <td colspan="5">
+                  <td tal:attributes="colspan python:len(context.exp_levels)"
+                      class="required-cell">
                       <tal:block condition="context/professional_certification"
                           content="python:', '.join(context.professional_certification)">
                       </tal:block>
                   </td>
+                  <td tal:repeat="cell python:range(5-len(context.exp_levels))">
+                  </td>
               </tr>
               <tr>
-                  <td>3</td>
+                  <td class="counter-cell">3</td>
                   <td class="dkiscm-description-column">Salary Range</td>
                   <tal:block define="vals context/salary_range|nothing;
                       item python:vals[0] if vals else None">
@@ -136,7 +144,8 @@
           <tbody>
               <tal:block repeat="item context/skills_competency">
                   <tr>
-                      <td tal:define="idx repeat/item/index">
+                      <td tal:define="idx repeat/item/index"
+                          class="counter-cell">
                           <tal:r replace="python:idx + 1"/>
                       </td>
                       <tal:c condition="item">
@@ -144,8 +153,7 @@
                               <span tal:replace="item/skill"/>&nbsp;
                           </td>
                           <td tal:repeat="exp view/exp_levels"
-                              tal:attributes="class python:'required-cell' if (
-                                    item['%s_required' % exp.value]) else ''">
+                              tal:attributes="class python:view.get_technical_skill_cell_class(item, exp)">
                               <span tal:replace="python:item[exp.value]"/>&nbsp;
                           </td>
                       </tal:c>
@@ -179,7 +187,8 @@
           <tbody>
               <tal:block repeat="item context/softskills_competency">
                   <tr>
-                      <td tal:define="idx repeat/item/index">
+                      <td tal:define="idx repeat/item/index"
+                          class="counter-cell">
                           <tal:r replace="python:idx + 1"/>
                       </td>
                       <tal:c condition="item">
