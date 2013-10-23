@@ -181,10 +181,51 @@ class Index(dexterity.DisplayForm):
             return 'high'
         return 'low'
 
+    def certification_colspan(self):
+        available_levels = [i.value for i in self.exp_levels()]
+        left = 0
+        def sortkey(x):
+            return available_levels.index(x)
+
+        sorted_levels = sorted(
+            self.context.exp_levels, key=sortkey
+        )
+        for i in available_levels:
+            if sorted_levels[0] == i:
+                break
+            left += 1
+        center = len(self.context.exp_levels)
+        right = 5 - left - center
+        return {
+            'left': left, 
+            'center': center, 
+            'right': right
+        }
+
 
 class PDFPrintView(Index):
     grok.name('pdf_print_view')
     grok.template('pdf_print_view')
+
+    def pdfonly_cluster_css(self):
+        cluster = self.cluster()
+
+        return u'''
+        th {
+                    background: %(th_bgcolor)s !important;
+        }
+        ''' % {
+            'infobox_bgcolor': cluster.infobox_bgcolor,
+            'th_bgcolor': cluster.th_bgcolor,
+            'td_bgcolor': cluster.td_bgcolor,
+            'highlighted_td_bgcolor': cluster.highlighted_td_bgcolor,
+            'weight1_bgcolor': cluster.weight1_bgcolor,
+            'weight2_bgcolor': cluster.weight2_bgcolor,
+            'weight3_bgcolor': cluster.weight3_bgcolor,
+            'weight4_bgcolor': cluster.weight4_bgcolor,
+            'weight5_bgcolor': cluster.weight5_bgcolor
+        }
+
 
 
 class PDFExportView(grok.View):

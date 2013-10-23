@@ -10,10 +10,9 @@
             .dkiscm-education-table td { text-align:center }  
 
             .skilltable { padding: 2px; background: #DDDEE0; font-size:9px}
-            th { background: #7F858E; color: #ffffff; padding-top:4px } 
+            th { color: #ffffff; padding-top:4px } 
 
             .skilltable { border:1px solid #ffffff; }
-            .descriptioncolumn { background: #7F858E; }
             .educationtable,
             .jobgroupingtable { 
                 border:1px solid #ffffff; 
@@ -38,6 +37,8 @@
 
         </style>
         <style tal:content="structure view/cluster_css">
+        </style>
+        <style tal:content="structure view/pdfonly_cluster_css">
         </style>
     </head>
     <body style="font-size:10px">
@@ -137,16 +138,17 @@
                         </td>
                     </tr>
 
-                    <tr>
+                    <tr tal:define="offset view/certification_colspan">
                         <td style="width:20px;text-align:center"
                             class="counter-cell">2</td>
                         <td class="descriptioncolumn">Professional Certification</td>
-                        <td tal:attributes="colspan python:len(context.exp_levels)"
+                        <td tal:repeat="cell python:range(offset['left'])"></td>
+                        <td tal:attributes="colspan python:offset['center']"
                             class="required-cell">
                             <tal:block condition="context/professional_certification"
                                 replace="python:', '.join(context.professional_certification)"/>
                         </td>
-                        <td tal:repeat="cell python:range(5-len(context.exp_levels))">
+                        <td tal:repeat="cell python:range(offset['right'])">
                         </td>
                     </tr>
                     <tr>

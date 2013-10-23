@@ -107,16 +107,18 @@
                   </td>
               </tr>
 
-              <tr>
+              <tr tal:define="offset view/certification_colspan">
                   <td class="counter-cell">2</td>
                   <td class="dkiscm-description-column">Professional Certification</td>
-                  <td tal:attributes="colspan python:len(context.exp_levels)"
+                  <td tal:repeat="cell python:range(offset['left'])"></td>
+                  <td tal:attributes="colspan python:offset['center']"
                       class="required-cell">
                       <tal:block condition="context/professional_certification"
+                          define="a view/certification_colspan"
                           content="python:', '.join(context.professional_certification)">
                       </tal:block>
                   </td>
-                  <td tal:repeat="cell python:range(5-len(context.exp_levels))">
+                  <td tal:repeat="cell python:range(offset['right'])">
                   </td>
               </tr>
               <tr>
