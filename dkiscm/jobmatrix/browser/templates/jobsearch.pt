@@ -7,8 +7,9 @@
         <metal:block fill-slot="javascript_head_slot">
         </metal:block>
     </head>
-    <body>
-        <div metal:fill-slot="content-core">
+    <body >
+        <div metal:fill-slot="content-core"
+            tal:define="resurl string:${context/portal_url}/++resource++dkiscm.jobmatrix/">
             <div class="dkiscm-frontpage-wrapper">
             <form tal:attributes="action string:${context/absolute_url}/jobsearch_results"
                 method="GET">
@@ -22,6 +23,11 @@
                             tal:content="cluster/title">
                         </option>
                     </select>
+                    <div style="text-align:center;margin-top:10px">
+                        <img style="height:242px"
+                            tal:attributes="src string:${resurl}/cluster.png"/>
+                    </div>
+
                 </div>
 
             <div class="dkiscm-frontpage-box">
@@ -34,11 +40,20 @@
                         tal:content="experience/title">
                     </option>
                 </select>
+
+                    <div style="text-align:center;margin-top:10px">
+                        <img style="height:242px"
+                            tal:attributes="src string:${resurl}/experience.png"/>
+                    </div>
             </div>
 
             <div class="dkiscm-frontpage-box">
                 <h2>Search keyword</h2>
                 <input name="searchtext" id="searchtext"/>
+                    <div style="text-align:center;margin-top:10px">
+                        <img style="height:242px;"
+                            tal:attributes="src string:${resurl}/keyword.png"/>
+                    </div>
             </div>
 
             <div class="visualClear"></div>
