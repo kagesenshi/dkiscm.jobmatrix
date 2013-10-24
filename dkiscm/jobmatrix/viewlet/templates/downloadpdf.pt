@@ -1,0 +1,4 @@
+<div id="dkiscm-jobmatrix-downloadpdf" style="float:right;font-size:13px">
+ <a tal:attributes="href string:${context/absolute_url}/pdf_download">Download PDF</a>
+</div>
+<div class="visualClear"></div>

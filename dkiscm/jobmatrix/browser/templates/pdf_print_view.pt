@@ -45,24 +45,31 @@
 
         <table style="width:100%;" class="dkiscm-job-titletable"
             tal:define="resurl string:${context/portal_url}/++resource++dkiscm.jobmatrix">
-            <tr>
-                <td style="width:200px">
+            <tr style="border-bottom:#B1CAE3 1px solid;">
+                <td style="width:200px;vertical-align:bottom">
                     <h4 style="font-size:12px">Job Code</h4>
+                </td>
+                <td style="vertical-align:bottom">
+                    <h4 style="font-size:12px">Job Type</h4>
+                </td>
+                <td style="text-align:right;vertical-align:bottom" >
+                    <img tal:condition="context/suitable_for_entry"
+                        style="height:30px"
+                        tal:attributes="src string:${resurl}/suitable-for-entry.png"/>
+                    <img 
+                        style="height:30px"
+                        tal:attributes="src string:${resurl}/job-demand-${view/job_demand}.png"/>
+                </td>
+            </tr>
+            <tr>
+                <td style="width:200px;padding-top:5px">
                     <h1 style="font-size:16px"><tal:block replace="context/job_code"/> </h1>
                 </td>
-                <td>
-                    <h4 style="font-size:12px">Job Type</h4>
+                <td style="padding-top:5px">
                     <h1 style="font-size:16px"><tal:block replace="context/pretty_title_or_id"/></h1>
                 </td>
                 <td style="text-align:right">
-                    <img style="height:50px;width:50px"
-                        tal:condition="context/suitable_for_entry"
-                        tal:attributes="src string:${resurl}/suitable-for-entry.png"/>
-                    <img 
-                        style="height:50px;width:50px"
-                        tal:attributes="src string:${resurl}/job-demand-${view/job_demand}.png"/>
                 </td>
-
             </tr>
         </table>
 

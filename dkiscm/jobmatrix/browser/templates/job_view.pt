@@ -17,19 +17,31 @@
           <metal:title fill-slot="content-title">
               <table style="width:100%;" class="dkiscm-job-titletable"
                   tal:define="resurl string:${context/portal_url}/++resource++dkiscm.jobmatrix">
+                  <tr style="border-bottom:#B1CAE3 3px solid">
+                      <td style="width:200px;vertical-align:bottom">
+                          <h4>Job Code</h4>
+                      </td>
+                      <td style="vertical-align:bottom">
+                          <h4>Job Type</h4>
+                      </td>
+                      <td style="text-align:right;vertical-align:bottom" >
+                          <img tal:condition="context/suitable_for_entry"
+                              style="height:50px"
+                              tal:attributes="src string:${resurl}/suitable-for-entry.png"/>
+                          <img 
+                              style="height:50px"
+                              tal:attributes="src string:${resurl}/job-demand-${view/job_demand}.png"/>
+                      </td>
+                  </tr>
                   <tr>
                       <td style="width:200px">
-                          <h4>Job Code</h4>
                           <h1><tal:block replace="context/job_code"/> </h1>
                       </td>
                       <td>
-                          <h4>Job Type</h4>
                           <h1><tal:block replace="context/pretty_title_or_id"/></h1>
                       </td>
                       <td style="text-align:right">
-                          <img tal:condition="context/suitable_for_entry"
-                              tal:attributes="src string:${resurl}/suitable-for-entry.png"/>
-                          <img tal:attributes="src string:${resurl}/job-demand-${view/job_demand}.png"/>
+
                       </td>
                   </tr>
               </table>
@@ -39,8 +51,6 @@
     <metal:main fill-slot="content-core">
 
         <metal:content-core define-macro="content-core">
-
-            <div style="text-align:right"><a tal:attributes="href string:${context/absolute_url}/pdf_download">Download PDF</a></div>
 
             <table class="dkiscm-job-information">
                 <tr>
