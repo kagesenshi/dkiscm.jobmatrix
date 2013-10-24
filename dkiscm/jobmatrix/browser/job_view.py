@@ -229,7 +229,7 @@ class PDFPrintView(Index):
 
 
 class PDFExportView(grok.View):
-    grok.name('pdf_export_view')
+    grok.name('pdf_view')
     grok.context(IJob)
 
     def render(self):
@@ -239,6 +239,23 @@ class PDFExportView(grok.View):
         out = result.getvalue()
         self.request.response.setHeader('Content-Type', 'application/pdf')
         self.request.response.setHeader('Content-Length', len(out))
+        return out
+
+
+class PDFDownload(grok.View):
+    grok.name('pdf_download')
+    grok.context(IJob)
+
+    def render(self):
+        html = self.context.restrictedTraverse('pdf_print_view')().encode('utf-8')
+        result = StringIO()
+        pdf = pisa.CreatePDF(StringIO(html), result)
+        out = result.getvalue()
+        self.request.response.setHeader('Content-Type', 'application/pdf')
+        self.request.response.setHeader('Content-Length', len(out))
+        self.request.response.setHeader('Content-Disposition',
+                            'attachment; filename=%s.pdf' %
+                            self.context.getId())
         return out
 
 class ExportAllView(grok.View):
