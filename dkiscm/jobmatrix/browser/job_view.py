@@ -208,6 +208,11 @@ class PDFPrintView(Index):
     grok.name('pdf_print_view')
     grok.template('pdf_print_view')
 
+    def pagebreak(self):
+        if self.request.get('nopagebreak', False):
+            return False
+        return True
+
     def pdfonly_cluster_css(self):
         cluster = self.cluster()
 
@@ -235,30 +240,40 @@ class PDFExportView(grok.View):
     grok.context(IJob)
 
     def render(self):
-        html = self.context.restrictedTraverse('pdf_print_view')().encode('utf-8')
-        result = StringIO()
-        pdf = pisa.CreatePDF(StringIO(html), result)
+        result = self._render_pdf()
+        pdfreader = PdfFileReader(result)
+        if pdfreader.getNumPages() > 2:
+            result = self._render_nopagebreak()
         out = result.getvalue()
         self.request.response.setHeader('Content-Type', 'application/pdf')
         self.request.response.setHeader('Content-Length', len(out))
         return out
 
+    def _render_pdf(self):
+        html = self.context.restrictedTraverse('pdf_print_view')().encode('utf-8')
+        result = StringIO()
+        pdf = pisa.CreatePDF(StringIO(html), result)
+        return result
 
-class PDFDownload(grok.View):
+    def _render_nopagebreak(self):
+        self.request.set('nopagebreak', True)
+        return self._render_pdf()
+
+
+
+
+class PDFDownload(PDFExportView):
     grok.name('pdf_download')
     grok.context(IJob)
 
     def render(self):
-        html = self.context.restrictedTraverse('pdf_print_view')().encode('utf-8')
-        result = StringIO()
-        pdf = pisa.CreatePDF(StringIO(html), result)
-        out = result.getvalue()
-        self.request.response.setHeader('Content-Type', 'application/pdf')
-        self.request.response.setHeader('Content-Length', len(out))
+        out = super(PDFDownload, self).render()
         self.request.response.setHeader('Content-Disposition',
                             'attachment; filename=%s.pdf' %
                             self.context.getId())
         return out
+
+
 
 class ExportAllView(grok.View):
     grok.name('pdf_export_all')
