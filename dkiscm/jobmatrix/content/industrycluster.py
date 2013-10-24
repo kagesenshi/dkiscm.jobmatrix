@@ -53,6 +53,12 @@ class IIndustryCluster(form.Schema, IImageScaleTraversable):
         default=u'#a5a5a5'
     )
 
+    heading_td_bgcolor = schema.TextLine(
+        title=u'Heading cell background color',
+        description=u'Hex value of the color',
+        default=u'#929292'
+    )
+
     weight1_bgcolor = schema.TextLine(
         title=u'Weight 1 background color',
         default=u"#EFEAEA"

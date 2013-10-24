@@ -128,15 +128,15 @@ class Index(dexterity.DisplayForm):
         }
 
         .dkiscm-description-column {
-            background: %(highlighted_td_bgcolor)s !important;
+            background: %(heading_td_bgcolor)s !important;
         }
 
         .descriptioncolumn {
-            background: %(highlighted_td_bgcolor)s !important;
+            background: %(heading_td_bgcolor)s !important;
         }
 
         .counter-cell {
-            background: %(highlighted_td_bgcolor)s !important;
+            background: %(heading_td_bgcolor)s !important;
         }
 
         .weight-cell-1 {
@@ -164,6 +164,7 @@ class Index(dexterity.DisplayForm):
             'th_bgcolor': cluster.th_bgcolor,
             'td_bgcolor': cluster.td_bgcolor,
             'highlighted_td_bgcolor': cluster.highlighted_td_bgcolor,
+            'heading_td_bgcolor': cluster.heading_td_bgcolor,
             'weight1_bgcolor': cluster.weight1_bgcolor,
             'weight2_bgcolor': cluster.weight2_bgcolor,
             'weight3_bgcolor': cluster.weight3_bgcolor,
@@ -219,6 +220,7 @@ class PDFPrintView(Index):
             'th_bgcolor': cluster.th_bgcolor,
             'td_bgcolor': cluster.td_bgcolor,
             'highlighted_td_bgcolor': cluster.highlighted_td_bgcolor,
+            'heading_td_bgcolor': cluster.heading_td_bgcolor,
             'weight1_bgcolor': cluster.weight1_bgcolor,
             'weight2_bgcolor': cluster.weight2_bgcolor,
             'weight3_bgcolor': cluster.weight3_bgcolor,
