@@ -151,6 +151,7 @@
                         <td class="descriptioncolumn">Professional Certification</td>
                         <td tal:repeat="cell python:range(offset['left'])"></td>
                         <td tal:attributes="colspan python:offset['center']"
+                            style="text-align:center"
                             class="required-cell">
                             <tal:block condition="context/professional_certification"
                                 replace="python:', '.join(context.professional_certification)"/>

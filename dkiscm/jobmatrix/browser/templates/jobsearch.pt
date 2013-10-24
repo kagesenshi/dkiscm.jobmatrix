@@ -24,7 +24,7 @@
                         </option>
                     </select>
                     <div style="text-align:center;margin-top:10px">
-                        <img style="height:170px"
+                        <img style="height:150px"
                             tal:attributes="src string:${resurl}/cluster.png"/>
                     </div>
 
@@ -42,7 +42,7 @@
                 </select>
 
                     <div style="text-align:center;margin-top:10px">
-                        <img style="height:170px"
+                        <img style="height:150px"
                             tal:attributes="src string:${resurl}/experience.png"/>
                     </div>
             </div>
@@ -51,7 +51,7 @@
                 <h2>Search keyword</h2>
                 <input name="searchtext" id="searchtext"/>
                     <div style="text-align:center;margin-top:10px">
-                        <img style="height:170px;"
+                        <img style="height:150px;"
                             tal:attributes="src string:${resurl}/keyword.png"/>
                     </div>
             </div>
