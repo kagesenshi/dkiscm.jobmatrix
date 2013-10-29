@@ -36,6 +36,7 @@ setup(name='dkiscm.jobmatrix',
           'collective.z3cform.datagridfield',
           'xhtml2pdf',
           'pypdf',
+          'z3c.caching'
           # -*- Extra requirements: -*-
       ],
       extras_require={

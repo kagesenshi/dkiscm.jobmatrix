@@ -7,6 +7,7 @@
     xmlns:grok="http://namespaces.zope.org/grok"
     xmlns:browser="http://namespaces.zope.org/browser"
     xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    xmlns:cache="http://namespaces.zope.org/cache"
     i18n_domain="dkiscm.jobmatrix">
 
     <includeDependencies package="." />
@@ -23,5 +24,20 @@
         directory="static"
         />
     <!-- -*- extra stuff goes here -*- -->
+
+    <cache:ruleset
+        ruleset="plone.content.itemView"
+        for=".browser.job_view.PDFExportView"
+        />
+
+    <cache:ruleset
+        ruleset="plone.content.itemView"
+        for=".browser.job_view.PDFDownload"
+        />
+
+    <cache:ruleset
+        ruleset="plone.content.folderView"
+        for=".browser.job_view.ExportAllView"
+        />
 
 </configure>
