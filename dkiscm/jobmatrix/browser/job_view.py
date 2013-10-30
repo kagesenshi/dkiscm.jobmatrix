@@ -268,9 +268,11 @@ class PDFDownload(PDFExportView):
 
     def render(self):
         out = super(PDFDownload, self).render()
+        filename = '%s_%s' % (self.context.getId().upper(),
+                self.context.Title().replace(' ', '_'))
         self.request.response.setHeader('Content-Disposition',
                             'attachment; filename=%s.pdf' %
-                            self.context.getId())
+                            filename)
         return out
 
 
