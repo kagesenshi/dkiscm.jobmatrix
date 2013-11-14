@@ -319,7 +319,7 @@ class IJob(form.Schema, IImageScaleTraversable):
 
     searchable('professional_certification')
     professional_certification = schema.List(
-        title=u'Professional Certification',
+        title=u'Industry Certification',
         value_type=schema.TextLine(),
         required=False
     )

@@ -119,7 +119,7 @@
 
               <tr tal:define="offset view/certification_colspan">
                   <td class="counter-cell">2</td>
-                  <td class="dkiscm-description-column">Professional Certification</td>
+                  <td class="dkiscm-description-column">Industry Certification</td>
                   <td tal:repeat="cell python:range(offset['left'])"></td>
                   <td tal:attributes="colspan python:offset['center']"
                       style="text-align:center"
