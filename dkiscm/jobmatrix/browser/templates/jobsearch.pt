@@ -59,7 +59,8 @@
             <div class="visualClear"></div>
             <div style="text-align:center">
                 <input  
-                    class="largebutton" type="submit" value="Search"/>
+                    class="largebutton" type="submit" value="Search"/><br/>
+                <p><a tal:attributes="href string:${context/portal_url}/howto">How to read the skills competency matrix</a></p>
             </div>
         </form>
     </div>
