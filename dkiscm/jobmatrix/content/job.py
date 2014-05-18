@@ -324,13 +324,13 @@ class IJob(form.Schema, IImageScaleTraversable):
         required=False
     )
 
-    form.widget(industry_certification=DataGridFieldFactory)
-    searchable('industry_certification')
-    industry_certification = schema.List(
-        title=u'Industry Certification',
-        value_type=DictRow(schema=IIndustryCertificationGrid),
-        required=False,
-    )
+#    form.widget(industry_certification=DataGridFieldFactory)
+#    searchable('industry_certification')
+#    industry_certification = schema.List(
+#        title=u'Industry Certification',
+#        value_type=DictRow(schema=IIndustryCertificationGrid),
+#        required=False,
+#    )
 
     form.widget(salary_range=DataGridFieldFactory)
     salary_range = schema.List(
