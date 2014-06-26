@@ -273,7 +273,7 @@ class PDFExportView(grok.View):
         html = self.context.restrictedTraverse('pdf_print_view')().encode('utf-8')
         result = StringIO()
         pdf = pisa.CreatePDF(StringIO(html), result)
-        return pdf
+        return result
 
     def _render_nopagebreak(self):
         self.request.set('nopagebreak', True)
