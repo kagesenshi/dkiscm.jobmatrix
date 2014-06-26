@@ -115,6 +115,17 @@ class Index(dexterity.DisplayForm):
             background: %(infobox_bgcolor)s !important;
         }
 
+        .dkiscm-job-heading {                                                   
+            border-bottom: 3px solid #000000 !important;                        
+        }                                                                       
+        .job-heading {                                                          
+            color: white !important;                                            
+            padding-left: 5px !important;                                       
+        }                                                                       
+        .dkiscm-jobcluster-color {                                              
+            color: %(infobox_bgcolor)s !important;                              
+        }
+
         .dkiscm-skilltable th {
             background: %(th_bgcolor)s !important;
         }
@@ -220,6 +231,15 @@ class PDFPrintView(Index):
         th {
                     background: %(th_bgcolor)s !important;
         }
+
+        .dkiscm-job-information {                                                                                     
+            padding-top: 0px !important;                                        
+            margin-bottom: 0px !important;                                      
+        }
+        
+        .skilltable {                                                           
+            padding: 0px !important;                                            
+        }
         ''' % {
             'infobox_bgcolor': cluster.infobox_bgcolor,
             'th_bgcolor': cluster.th_bgcolor,
@@ -253,7 +273,7 @@ class PDFExportView(grok.View):
         html = self.context.restrictedTraverse('pdf_print_view')().encode('utf-8')
         result = StringIO()
         pdf = pisa.CreatePDF(StringIO(html), result)
-        return result
+        return pdf
 
     def _render_nopagebreak(self):
         self.request.set('nopagebreak', True)

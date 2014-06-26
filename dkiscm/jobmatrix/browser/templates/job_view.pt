@@ -13,9 +13,22 @@
           </metal:css>
       </head>
       <body>
-
           <metal:title fill-slot="content-title">
-              <table style="width:100%;" class="dkiscm-job-titletable"
+        <table style="width:100%" class="dkiscm-job-heading cluster-infobox">
+                <tr>                                                                                                  
+                    <td style="vertical-align:bottom;">                         
+                        <h3 class="job-heading">Industry Cluster</h3>           
+                    </td>                                                       
+                </tr>                                                           
+                <tr>                                                            
+                    <td class="vertical-align:top;">                            
+                        <h1 class="job-heading">                                
+                            <tal:block replace="string:Cluster Name" />         
+                        </h1>                                                   
+                    </td>                                                       
+                </tr>                                                           
+                </table>
+          <table style="width:100%;" class="dkiscm-job-titletable"
                   tal:define="resurl string:${context/portal_url}/++resource++dkiscm.jobmatrix">
                   <tr style="border-bottom:#B1CAE3 3px solid">
                       <td style="width:200px;vertical-align:bottom">
@@ -35,10 +48,10 @@
                   </tr>
                   <tr>
                       <td style="width:200px">
-                          <h1><tal:block replace="context/job_code"/> </h1>
+                          <h1 class="dkiscm-jobcluster-color"><tal:block replace="context/job_code"/> </h1>
                       </td>
                       <td>
-                          <h1><tal:block replace="context/pretty_title_or_id"/></h1>
+                          <h1 class="dkiscm-jobcluster-color"><tal:block replace="context/pretty_title_or_id"/></h1>
                       </td>
                       <td style="text-align:right">
 
