@@ -46,14 +46,14 @@
             <tr>                                                                   
                 <td style="vertical-align:bottom;">                                
                     <h4 style="font-size:12px" class="job-heading">
-                        <tal:block replace="view/cluster_title" />
+                        Industry Cluster
                     </h4>
                 </td>                                                              
             </tr>                                                                  
             <tr>                                                                   
                 <td class="vertical-align:top;">                                   
                     <h2 style="font-size:14px" class="job-heading">                
-                        <tal:block replace="string:Cluster Name" />                
+                        <tal:block replace="view/cluster_title" />                
                     </h2>                                                          
                 </td>                                                              
             </tr>                                                                                                 
