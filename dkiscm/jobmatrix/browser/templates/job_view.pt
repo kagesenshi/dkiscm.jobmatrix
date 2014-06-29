@@ -23,7 +23,7 @@
                 <tr>                                                            
                     <td class="vertical-align:top;">                            
                         <h1 class="job-heading">                                
-                            <tal:block replace="string:Cluster Name" />         
+                            <tal:block replace="view/cluster_title" />         
                         </h1>                                                   
                     </td>                                                       
                 </tr>                                                           

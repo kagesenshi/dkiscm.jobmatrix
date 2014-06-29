@@ -28,6 +28,10 @@ class Index(dexterity.DisplayForm):
     grok.name('view')
 
 
+    def cluster_title(self):
+        cluster = aq_parent(aq_parent(self.context))
+        return cluster.title
+
     def cluster(self):
         group = aq_parent(self.context)
         if not IJobGroup.providedBy(group):
