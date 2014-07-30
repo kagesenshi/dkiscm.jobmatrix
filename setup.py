@@ -37,6 +37,8 @@ setup(name='dkiscm.jobmatrix',
           'xhtml2pdf',
           'pypdf',
           'reportlab==2.7',
+          'collective.pdfexport',
+          'plone.api',
           'z3c.caching'
           # -*- Extra requirements: -*-
       ],

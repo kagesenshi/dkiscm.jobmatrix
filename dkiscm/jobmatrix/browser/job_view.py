@@ -119,13 +119,6 @@ class Index(dexterity.DisplayForm):
             background: %(infobox_bgcolor)s !important;
         }
 
-        .dkiscm-job-heading {                                                   
-            border-bottom: 3px solid #000000 !important;                        
-        }                                                                       
-        .job-heading {                                                          
-            color: white !important;                                            
-            padding-left: 5px !important;                                       
-        }                                                                       
         .dkiscm-jobcluster-color {                                              
             color: %(infobox_bgcolor)s !important;                              
         }
@@ -235,15 +228,6 @@ class PDFPrintView(Index):
         th {
                     background: %(th_bgcolor)s !important;
         }
-
-        .dkiscm-job-information {                                                                                     
-            padding-top: 0px !important;                                        
-            margin-bottom: 0px !important;                                      
-        }
-        
-        .skilltable {                                                           
-            padding: 0px !important;                                            
-        }
         ''' % {
             'infobox_bgcolor': cluster.infobox_bgcolor,
             'th_bgcolor': cluster.th_bgcolor,
@@ -256,7 +240,6 @@ class PDFPrintView(Index):
             'weight4_bgcolor': cluster.weight4_bgcolor,
             'weight5_bgcolor': cluster.weight5_bgcolor
         }
-
 
 
 class PDFExportView(grok.View):
@@ -274,9 +257,9 @@ class PDFExportView(grok.View):
         return out
 
     def _render_pdf(self):
-        html = self.context.restrictedTraverse('pdf_print_view')().encode('utf-8')
-        result = StringIO()
-        pdf = pisa.CreatePDF(StringIO(html), result)
+        self.request.set('pdf-view','pdf_print_view')
+        pdf = self.context.restrictedTraverse('download_pdf')()
+        result = StringIO(pdf)
         return result
 
     def _render_nopagebreak(self):
@@ -312,14 +295,10 @@ class ExportAllView(grok.View):
             'portal_type':'dkiscm.jobmatrix.job'
             }):
             obj = brain.getObject()
-            html = obj.restrictedTraverse('pdf_print_view')()
-            result = StringIO()
 
-            try:
-                pdf = pisa.CreatePDF(StringIO(html), result)
-            except:
-                logger.error('Unable to convert job to PDF : %s' % obj.absolute_url())
-                continue
+            pdf = obj.restrictedTraverse('pdf_view')()
+            result = StringIO(pdf)
+
             append_pdf(PdfFileReader(result), pdfoutput)
 
         output = StringIO()
@@ -329,6 +308,8 @@ class ExportAllView(grok.View):
 
         self.request.response.setHeader('Content-Type', 'application/pdf')
         self.request.response.setHeader('Content-Length', len(out))
+        self.request.response.setHeader('Content-Disposition',
+                'attachment; filename=JobMatrix.pdf')
         return out
 
 
