@@ -112,7 +112,7 @@
                         <tal:block replace="view/cluster_title" />                
                     </h2>    
                 </td>                                                              
-                <td class="suitable-for-entry">
+                <td class="suitable-for-entry" tal:condition="context/suitable_for_entry">
                     Suitable For Entry Level
                 </td>
                 <td class="job-demand-icon-column">

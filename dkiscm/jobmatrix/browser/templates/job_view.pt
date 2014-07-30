@@ -10,26 +10,43 @@
               <style tal:content="structure view/cluster_css">
                   
               </style>
+              <style>
+                  .dkiscm-job-heading .job-heading {
+                    color: #fff;
+                    }
+                    .dkiscm-job-heading td { padding: 10px;}
+.suitable-for-entry {
+    background-color:#FF4500;color: #fff; text-align:center; vertical-align:bottom;
+    width:100px;
+    padding:0 5px;
+}
+
+              </style>
           </metal:css>
       </head>
       <body>
-          <metal:title fill-slot="content-title">
+          <metal:title fill-slot="content-title"
+            tal:define="resurl string:${context/portal_url}/++resource++dkiscm.jobmatrix">
         <table style="width:100%" class="dkiscm-job-heading cluster-infobox">
-                <tr>                                                                                                  
-                    <td style="vertical-align:bottom;">                         
+                <tr>
+                    <td style="vertical-align:top;">                         
                         <h3 class="job-heading">Industry Cluster</h3>           
-                    </td>                                                       
-                </tr>                                                           
-                <tr>                                                            
-                    <td class="vertical-align:top;">                            
                         <h1 class="job-heading">                                
                             <tal:block replace="view/cluster_title" />         
                         </h1>                                                   
-                    </td>                                                       
+                    </td>
+                    <td class="suitable-for-entry"
+                        tal:condition="context/suitable_for_entry">
+                        Suitable For Entry Level
+                     </td>
+                     <td style="width:48px;padding:0">
+                          <img 
+                              style="width:48px"
+                              tal:attributes="src string:${resurl}/job-demand-${view/job_demand}.png"/>
+                     </td>
                 </tr>                                                           
                 </table>
-          <table style="width:100%;" class="dkiscm-job-titletable"
-                  tal:define="resurl string:${context/portal_url}/++resource++dkiscm.jobmatrix">
+          <table style="width:100%;" class="dkiscm-job-titletable">
                   <tr style="border-bottom:#B1CAE3 3px solid">
                       <td style="width:200px;vertical-align:bottom">
                           <h4>Job Code</h4>
@@ -37,14 +54,7 @@
                       <td style="vertical-align:bottom">
                           <h4>Job Type</h4>
                       </td>
-                      <td style="text-align:right;vertical-align:bottom" >
-                          <img tal:condition="context/suitable_for_entry"
-                              style="height:50px"
-                              tal:attributes="src string:${resurl}/suitable-for-entry.png"/>
-                          <img 
-                              style="height:50px"
-                              tal:attributes="src string:${resurl}/job-demand-${view/job_demand}.png"/>
-                      </td>
+
                   </tr>
                   <tr>
                       <td style="width:200px">
